@@ -87,3 +87,14 @@ ENV/
 
 # Rope project settings
 .ropeproject
+
+# set my ignore file ↓
+
+# IDE config files
+.idea/
+
+# log file
+log/
+
+# data file
+data/
