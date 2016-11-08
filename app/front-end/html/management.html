@@ -2,9 +2,111 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>后台管理页面</title>
+    <link rel="stylesheet" href="../css/style.css" type="text/css">
 </head>
 <body>
 
+<div class="header">
+    <div class="nav">
+        <div class="left-link">
+            <p class="project_name">
+                <img src="../img/folder_python_logo.png" class="logo">
+                <strong>大学生创新创业活动管理系统</strong>
+            </p>
+        </div>
+        <div class="right-link">
+            <ul>
+                <li class="user_logo"><img src="../img/user_no_32px.ico"></li>
+                <li class="text">欢迎您,<span class="username">请先登陆</span></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="main">
+    <div class="left" id="accordion">
+        <ul>
+            <li>
+                <div class="link">账号管理</div>
+                <ul class="submenu">
+                    <li><a href="#"> 添加新用户</a></li>
+                    <li><a href="#">用户列表</a></li>
+                </ul>
+            </li>
+
+            <li>
+                <div class="link">竞赛管理</div>
+                <ul class="submenu">
+                    <li><a href="#">添加新项目</a></li>
+                    <li><a href="#">查看项目列表</a></li>
+                    <li><a href="#">竞赛详情</a></li>
+                </ul>
+            </li>
+            <li>
+                <div class="link">论文管理</div>
+                <ul class="submenu">
+                    <li><a href="#">论文列表</a></li>
+                </ul>
+            </li>
+            <li>
+                <div class="link">项目立项管理</div>
+                <ul class="submenu">
+                    <li><a href="#">项目列表</a></li>
+                </ul>
+            </li>
+            <li>
+                <div class="link">公司注册管理</div>
+                <ul class="submenu">
+                    <li><a href="#">公司注册列表</a></li>
+                </ul>
+            </li>
+            <li>
+                <div class="link">其他成果管理</div>
+                <ul class="submenu">
+                    <li><a href="#">其他成果列表</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div class="content">
+    </div>
+
+</div>
+
+<div class="footer">
+
+</div>
+
+
+<script src="../js/jquery.js" type="text/javascript"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(".submenu").hide();
+
+        var Accordion = function (el, multiple) {
+            this.el = el;
+            this.multiple = multiple;
+
+            var links = this.el.find('.link');
+            links.on('click', {el: this.el, multiple: this.multiple}, this.dropdown)
+        };
+
+        Accordion.prototype.dropdown = function (e) {
+            var $el = e.data.el;
+            $this = $(this);
+            $next = $this.next();
+
+            $next.slideToggle();
+            $this.parent().toggleClass('open');
+
+            if (!e.data.multiple) {
+                $el.find('.submenu').not($next).slideUp().parent().removeClass('open');
+            }
+        };
+        var accordion = new Accordion($('#accordion'), false);
+    });
+</script>
 </body>
 </html>
