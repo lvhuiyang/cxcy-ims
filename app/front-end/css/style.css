@@ -47,7 +47,7 @@ p.project_name {
 .right-link > ul > li {
     height: 32px;
     width: auto;
-    display: inline;
+    display: inline-block;
     font-size: 17px;
 }
 
@@ -59,6 +59,7 @@ li.user_logo > img {
 
 li.text {
     color: #3A7734;
+    font-size: 1px;
 }
 
 /*主页面包含左部和主页面*/
@@ -104,6 +105,13 @@ ul li {
     cursor: pointer;
 }
 
+div.link>a  {
+    display: block;
+    font-size: 18px;
+    text-decoration: none;
+    color: black;
+}
+
 .submenu > li > a {
     display: block;
     height: 30px;
@@ -117,3 +125,11 @@ ul li {
     color: #337ab7;
     text-decoration: none;
 }
+
+/*主内容样式*/
+
+.content>h1 {
+    margin-top: 10px;
+    margin-left: 20px;
+}
+
