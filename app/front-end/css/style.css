@@ -6,6 +6,7 @@
 body {
     width: 960px;
     margin: auto;
+    background: url("http://obmfmt907.bkt.clouddn.com/job_backgroud.jpeg");
 }
 
 /*包含整个导航页面的头部*/
@@ -13,7 +14,7 @@ body {
     margin-top: 5px;
     width: 960px;
     height: 80px;
-    background-color: #dedede;
+    /*background-color: #dedede;*/
 }
 
 /*项目名称*/
@@ -57,30 +58,26 @@ li.user_logo > img {
     float: right;
 }
 
-li.text {
-    color: #3A7734;
-    font-size: 1px;
-}
-
 /*主页面包含左部和主页面*/
 .main {
     margin: auto;
     width: 960px;
-    height: 1200px;
-    background: #dedede;
+    height: 600px;
+    /*background: #dedede;*/
 }
 
 .main > .left {
     float: left;
     width: 200px;
-    height: 1200px;
+    height: 600px;
+    background: #dedede;
 }
 
 .main > .content {
     float: right;
     width: 760px;
-    height: 1200px;
-    background-color: ghostwhite;
+    height: 600px;
+    background-color: #d1d1d1;
 }
 
 /*左侧折叠菜单*/
@@ -105,7 +102,7 @@ ul li {
     cursor: pointer;
 }
 
-div.link>a  {
+div.link > a {
     display: block;
     font-size: 18px;
     text-decoration: none;
@@ -128,8 +125,26 @@ div.link>a  {
 
 /*主内容样式*/
 
-.content>h1 {
+.content > h1 {
     margin-top: 10px;
     margin-left: 20px;
+}
+
+/*页脚*/
+
+div.footer {
+    height: 40px;
+    /*background-color: #d4c1c0;*/
+}
+
+div.footer > p {
+    padding-top: 10px;
+    text-align: center;
+    font-size: 16px;
+    font-family: '微软雅黑';
+}
+
+div.footer > p > a {
+    text-decoration: none;
 }
 
