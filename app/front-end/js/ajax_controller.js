@@ -9,9 +9,9 @@ function initPage() {
         link = accordion[i];
         link.onclick = function () {
             // find the image name
-            // alert('Hello');
+            //alert('Hello');
             //detailURL = 'competition.html';
-            //document.getElementById("test").innerHTML = test;
+            //document.getElementsByClassName("content").innerHTML = "HTML";
             getDetails(this.title);
         };
     }
@@ -33,25 +33,24 @@ function initPage() {
         return request;
     }
 
-    function getDetails(name) {
+    function getDetails(title) {
         request = createRequest();
         if (request == null) {
             alert("无法创建请求对象，请检查是否开启JS?");
             return request;
         }
-        // alert(name);
-        var url = "competition.html";
+        var url = "for_request/" + title + '.html';
         request.open("GET", url, true);
         request.onreadystatechange = displayDetails; // 回调函数
         request.send(null);
     }
 
 
-    function displayDetails(name) {
+    function displayDetails() {
         if (request.readyState == 4) {
 
-            detailDiv = document.getElementById("test");
-            detailDiv.innerHTML = name;
+            detailDiv = document.getElementById("content");
+            detailDiv.innerHTML = request.responseText;
         }
     }
 }

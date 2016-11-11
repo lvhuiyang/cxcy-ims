@@ -148,3 +148,62 @@ div.footer > p > a {
     text-decoration: none;
 }
 
+/*添加用户*/
+
+div.add_user {
+    margin: auto;
+    margin-top: 20px;
+    width: 600px;
+    height: 300px;
+}
+
+.form1 {
+    width: 220px;
+    height: 200px;
+    margin: auto;
+}
+
+.form1 > input {
+    height: 40px;
+    width: 240px;
+    margin-bottom: 10px;
+    font-size: 16px;
+    /*display: block;*/
+}
+
+.form1 > button.submit_button {
+    height: 35px;
+    width: 100px;
+    border-radius: 5px;
+    font-size: 16px;
+    background-color: #ffcb7f;
+}
+
+.form1 > button.reset_button {
+    margin-left: 12px;
+    height: 35px;
+    width: 100px;
+    border-radius: 5px;
+    font-size: 16px;
+    background-color: #ffcb7f;
+}
+
+.add_user > p {
+    padding-left: 50px;
+    font-family: '微软雅黑';
+}
+
+.add_user h2 {
+    text-align: center;
+}
+
+/*用户列表*/
+
+#user_list {
+    margin: auto;
+    margin-top: 20px;
+    width: 600px;
+    height: 400px;
+    background-color: #c9c6ab;
+}
+
