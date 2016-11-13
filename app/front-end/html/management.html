@@ -5,10 +5,10 @@
     <title>后台管理页面</title>
     <link rel="stylesheet" href="../css/style.css" type="text/css">
     <!--生成表单cdn-->
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css"
-          type="text/css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.2.2/css/buttons.dataTables.min.css"
-          type="text/css">
+    <!--<link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css"-->
+          <!--type="text/css">-->
+    <!--<link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.2.2/css/buttons.dataTables.min.css"-->
+          <!--type="text/css">-->
 </head>
 <body>
 
@@ -80,28 +80,7 @@
 
     <div class="content" id="content">
         <!--<h1>后台管理首页</h1>-->
-        <div id="user_list">
-            <table id="user" class="display nowrap" cellspacing="0" width="100%">
-                <tr>
-                    <td>ID</td>
-                    <td>用户名</td>
-                    <td>使用者/公司名</td>
-                    <td>备注</td>
-                </tr>
-                <tr>
-                    <td>内容1-1</td>
-                    <td>内容2-1</td>
-                    <td>内容3-1</td>
-                    <td>内容3-1</td>
-                </tr>
-                <tr>
-                    <td>内容2-1</td>
-                    <td>内容2-2</td>
-                    <td>内容2-3</td>
-                    <td>内容2-3</td>
-                </tr>
-            </table>
-        </div>
+
     </div>
 
 </div>
@@ -112,14 +91,15 @@
 
 
 <script src="../js/jquery.js" type="text/javascript"></script>
-<script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.flash.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
-<script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js"></script>
-<script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"></script>
-<script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js"></script>
+<!--<script src="https://code.jquery.com/jquery-1.12.3.js"></script>-->
+<!--<script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>-->
+<!--<script src="https://cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js"></script>-->
+<!--<script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.flash.min.js"></script>-->
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>-->
+<!--<script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js"></script>-->
+<!--<script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"></script>-->
+<!--<script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js"></script>-->
+<!--<script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js"></script>-->
 <script type="text/javascript">
     $(document).ready(function () {
         $(".submenu").hide();
@@ -148,9 +128,13 @@
         var accordion = new Accordion($('#accordion'), false);
 
         /*Table Control*/
-        $('#user').DataTable({
-            dom: 'Bfrtip',
-            buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
+        $(document).ready(function () {
+            $('#user').DataTable({
+                dom: 'Bfrtip',
+                buttons: [
+                    'copy', 'csv', 'excel', 'pdf', 'print'
+                ]
+            });
         });
     });
 </script>
