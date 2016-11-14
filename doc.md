@@ -41,7 +41,7 @@ table_name: competitions
 
 + id: int, 主键
 
-+ project_name: 外键 ==> projects.name
++ project_id: 外键 ==> projects.id
 
 + achievement_name: str, 成果名称
 

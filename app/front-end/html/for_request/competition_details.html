@@ -5,6 +5,17 @@
     <title>Title</title>
 </head>
 <body>
+<!--在两个script中必须先定义后调用-->
+<script type="text/javascript">
+    demo();
+</script>
+
+<script type="text/javascript">
+    function demo() {
+        alert("HelloWorld");
+    }
+</script>
+
 
 </body>
 </html>
