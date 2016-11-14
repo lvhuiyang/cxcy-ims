@@ -1,8 +1,9 @@
 from flask_login import UserMixin
+from app import login_manager
 from app import db
 
 
-class Accounts(db.Model):
+class Accounts(UserMixin, db.Model):
     """
     用户账号信息
     """
@@ -87,3 +88,8 @@ class Other(db.Model):
     其他成果统计
     """
     id = db.Column(db.Integer, primary_key=True)  # id 作为主键
+
+
+@login_manager.user_loader
+def load_user(user_id):
+    return Accounts.query.get(int(user_id))

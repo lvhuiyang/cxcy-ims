@@ -3,23 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>首页</title>
-    <link rel="stylesheet" href="../css/style.css" type="text/css">
-    <!--生成表单cdn-->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css">
+    {# 生成表单cdn #}
+    <link rel="shortcut icon" href="{{ url_for('static', filename='img/folder_python.ico') }}" type="imgge/x-icon">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css"
           type="text/css">
     <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.2.2/css/buttons.dataTables.min.css"
           type="text/css">
-    <style type="text/css">
-        /*提交历史*/
-        #submit_history {
-            width: 720px;
-            height: 550px;
-            /*background-color: #fff7dc;*/
-            margin-top: 20px;
-            margin-left: 20px;
-        }
-
-    </style>
 </head>
 <body>
 
@@ -27,13 +17,13 @@
     <div class="nav">
         <div class="left-link">
             <p class="project_name">
-                <img src="../img/folder_python_logo.png" class="logo">
+                <img src="{{ url_for('static', filename='img/folder_python_logo.png') }}" class="logo">
                 <strong>大学生创新创业活动管理系统</strong>
             </p>
         </div>
         <div class="right-link">
             <ul>
-                <li class="user_logo"><img src="../img/user_ok_32px.ico"></li>
+                <li class="user_logo"><img src="{{ url_for('static', filename='img/user_ok_32px.ico') }}"></li>
                 <li class="text">欢迎您,请登陆</li>
             </ul>
         </div>
@@ -71,19 +61,7 @@
     </div>
 
     <div class="content" id="content">
-        <div class="competition">
-            <form action="#" method="post">
 
-                <label>竞赛项目</label>
-                <select name="cars" title="select">
-                    <option value="volvo">Volvo</option>
-                    <option value="saab">Saab</option>
-                    <option value="fiat">Fiat</option>
-                    <option value="audi">Audi</option>
-                </select>
-
-            </form>
-        </div>
     </div>
 
 </div>
@@ -91,7 +69,6 @@
 <div class="footer">
     <p>&copy;Copyright 2016 ，SDUT&nbsp;<a href="http://cxcy.sdut.edu.cn/" target="_blank">创新创业学院</a></p>
 </div>
-
 <script src="https://code.jquery.com/jquery-1.12.3.js"></script>
 <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
 <script src="https://cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js"></script>

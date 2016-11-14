@@ -1,10 +1,10 @@
 from app.main import main
-from flask import jsonify
+from flask import jsonify, render_template
 
 
 @main.route('/')
 def index():
-    return jsonify({'test_cookie': 'test_cookie_value'})
+    return render_template("base.html")
 
 
 @main.route('/login', methods=['POST'])
