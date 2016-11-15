@@ -1,13 +1,20 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>登录页面</title>
-    <link rel="stylesheet" href="../css/style.css" type="text/css">
+{% extends "base.html" %}
+
+{% block main %}
+    <div class="form_div">
+        <form action="#" method="get" class="form">
+            <h3>欢迎使用，请登录！</h3>
+            <br/>
+            <input type="email" name="username" class="username" placeholder="请输入您的用户名！">
+            <input type="password" name="password" class="password" placeholder="请输入您的用户密码！">
+            <button type="submit" class="submit_button">登录</button>
+            <button type="reset" class="reset_button">重置</button>
+        </form>
+    </div>
+
     <style type="text/css">
         .main {
             border: solid 3px #d1d1d1;
-            /*background-color: #d1d1d1;*/
         }
 
         div.form_div {
@@ -15,7 +22,6 @@
             padding-top: 20px;
             height: 300px;
             width: 500px;
-            /*background-color: #1b6d85;*/
         }
 
         .form {
@@ -75,42 +81,4 @@
         }
 
     </style>
-</head>
-<body>
-
-<div class="header">
-    <div class="nav">
-        <div class="left-link">
-            <p class="project_name">
-                <img src="../img/folder_python_logo.png" class="logo">
-                <strong>大学生创新创业活动管理系统</strong>
-            </p>
-        </div>
-        <div class="right-link">
-            <ul>
-                <li class="user_logo"><img src="../img/user_ok_32px.ico"></li>
-                <li class="text"><a href="login.html">欢迎您,请登陆</a></li>
-            </ul>
-        </div>
-    </div>
-</div>
-
-<div class="main">
-    <div class="form_div">
-        <form action="#" method="get" class="form">
-            <h3>欢迎使用，请登录！</h3>
-            <br/>
-            <input type="email" name="username" class="username" placeholder="请输入您的用户名！">
-            <input type="password" name="password" class="password" placeholder="请输入您的用户密码！">
-            <button type="submit" class="submit_button">登录</button>
-            <button type="reset" class="reset_button">重置</button>
-        </form>
-    </div>
-</div>
-
-<div class="footer">
-    <p>&copy;Copyright 2016 ，SDUT&nbsp;<a href="http://cxcy.sdut.edu.cn/" target="_blank">创新创业学院</a></p>
-</div>
-
-</body>
-</html>
+{% endblock %}

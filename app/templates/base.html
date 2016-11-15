@@ -27,7 +27,7 @@
                     <li class="text">欢迎您,123</li>
                 {% else %}
                     <li class="user_logo"><img src="{{ url_for('static', filename='img/user_ok_32px.ico') }}"></li>
-                    <li class="text">欢迎您,请登陆</li>
+                    <li class="text"><a href="{{ url_for("main.login") }}">您好，请登录</a></li>
                 {% endif %}
             </ul>
         </div>
