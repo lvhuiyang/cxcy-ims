@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block main %}
+
+    <h1 id="e_404">页面未找到，请检查填写的网址是否正确, <a href="{{ url_for('main.index') }}">返回首页</a></h1>
+
+    <style>
+        #e_404 {
+            padding-top: 30px;
+            padding-left: 100px;
+        }
+
+        #e_404 > a {
+            text-decoration: none;
+        }
+    </style>
+
+{% endblock %}
