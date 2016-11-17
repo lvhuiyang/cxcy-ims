@@ -1,48 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>首页</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css">
-    {# 生成表单cdn #}
-    <link rel="shortcut icon" href="{{ url_for('static', filename='img/folder_python.ico') }}" type="imgge/x-icon">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css"
-          type="text/css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.2.2/css/buttons.dataTables.min.css"
-          type="text/css">
-</head>
-<body>
+{% extends "base.html" %}
 
-<div class="header">
-    <div class="nav">
-        <div class="left-link">
-            <p class="project_name">
-                <img src="{{ url_for('static', filename='img/folder_python_logo.png') }}" class="logo">
-                <strong>大学生创新创业活动管理系统</strong>
-            </p>
-        </div>
-        <div class="right-link">
-            <ul>
-                <li class="user_logo"><img src="{{ url_for('static', filename='img/user_ok_32px.ico') }}"></li>
-                <li class="text">欢迎您,请登陆</li>
-            </ul>
-        </div>
-    </div>
-</div>
+{% block main %}
 
-<div class="main">
     <div class="left" id="accordion">
         <ul>
             <li>
-                <div class="link"><a href="#" title="user_account">个人账号</a></div>
+                <div class="link"><a href="{{ url_for('main.user_profile') }}">个人账号</a></div>
             </li>
 
             <li>
-                <div class="link"><a href="#" title="submit_history">提交历史记录</a></div>
+                <div class="link"><a href="{{ url_for('main.submit_history') }}">提交历史记录</a></div>
             </li>
 
             <li>
-                <div class="link"><a href="#" title="competition">竞赛获奖</a></div>
+                <div class="link"><a href="#">竞赛获奖</a></div>
             </li>
 
             <li>
@@ -61,99 +32,9 @@
     </div>
 
     <div class="content" id="content">
+        {% block content %}
 
+        {% endblock %}
     </div>
 
-</div>
-
-<div class="footer">
-    <p>&copy;Copyright 2016 ，SDUT&nbsp;<a href="http://cxcy.sdut.edu.cn/" target="_blank">创新创业学院</a></p>
-</div>
-<script src="https://code.jquery.com/jquery-1.12.3.js"></script>
-<script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/1.2.2/js/dataTables.buttons.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.flash.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
-<script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/pdfmake.min.js"></script>
-<script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.18/build/vfs_fonts.js"></script>
-<script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.html5.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/1.2.2/js/buttons.print.min.js"></script>
-
-<script>
-    window.onload = initPage;
-
-    function initPage() {
-        accordion = document.getElementById("accordion").getElementsByTagName("a");
-        for (var i = 0; i < accordion.length; i++) {
-            link = accordion[i];
-            link.onclick = function () {
-//                alert("Hello");
-                getDetails(this.title);
-            };
-        }
-
-        function createRequest() {
-            try {
-                request = new XMLHttpRequest();
-            } catch (tryMS) {
-                try {
-                    request = new ActiveXObject("Msxm12.XMLHTTP");
-                } catch (otherMS) {
-                    try {
-                        request = new ActiveXObject("Microsoft.XMLHTTP");
-                    } catch (failed) {
-                        request = null;
-                    }
-                }
-            }
-            return request;
-        }
-
-        function getDetails(title) {
-            request = createRequest();
-            if (request == null) {
-                alert("无法创建请求对象，请检查是否开启JS?");
-                return request;
-            }
-            var url = "for_user/" + title + '.html';
-            request.open("GET", url, true);
-            request.onreadystatechange = displayDetails; // 回调函数
-            request.send(null);
-//            alert(request.responseText);
-        }
-
-
-        function displayDetails() {
-            if (request.readyState == 4) {
-
-                detailDiv = document.getElementById("content");
-                detailDiv.innerHTML = request.responseText;
-                $(document).ready(function () {
-                    $('#submit_history_table').DataTable({
-                        dom: 'Bfrtip',
-                        buttons: [
-                            'copy', 'csv', 'excel', 'pdf', 'print'
-                        ]
-                    });
-                });
-            }
-        }
-
-    }
-</script>
-
-
-<script>
-    /*Table Control*/
-    $(document).ready(function () {
-        $('#submit_history').DataTable({
-            dom: 'Bfrtip',
-            buttons: [
-                'copy', 'csv', 'excel', 'pdf', 'print'
-            ]
-        });
-    });
-</script>
-
-</body>
-</html>
+{% endblock %}
