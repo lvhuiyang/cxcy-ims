@@ -5,13 +5,14 @@ from flask_login import current_user
 
 
 @main.route('/')
+@main.route('/index')
 def index():
     if current_user.is_authenticated:
         print("用户是登录状态")
     else:
         print("没有用户登录")
-        # return redirect(url_for('main.login'))
-    return render_template("base.html")
+        return redirect(url_for('main.user'))
+    return render_template("management.html")
 
 
 @main.route('/login', methods=['GET', 'POST'])
@@ -34,3 +35,8 @@ def login():
 @main.route('/manager')
 def manager():
     return render_template('management.html')
+
+
+@main.route('/user')
+def user():
+    return render_template('user.html')
