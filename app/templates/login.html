@@ -2,12 +2,12 @@
 
 {% block main %}
     <div class="form_div">
-        <form action="#" method="get" class="form">
+        <form class="form" action="{{ url_for('main.login') }}" method="post" id="form">
             <h3>欢迎使用，请登录！</h3>
             <br/>
-            <input type="email" name="username" class="username" placeholder="请输入您的用户名！">
+            <input type="text" name="username" class="username" placeholder="请输入您的用户名！">
             <input type="password" name="password" class="password" placeholder="请输入您的用户密码！">
-            <button type="submit" class="submit_button">登录</button>
+            <input type="submit" class="submit_button" id="submit_button" value="登录">
             <button type="reset" class="reset_button">重置</button>
         </form>
     </div>
@@ -39,7 +39,7 @@
             /*display: block;*/
         }
 
-        .form > button.submit_button {
+        .form > input.submit_button {
             height: 45px;
             width: 100px;
             border-radius: 5px;
@@ -80,5 +80,48 @@
             -webkit-animation-iteration-count: infinite;
         }
 
+        .form > input.submit_button:hover {
+            -webkit-animation-name: tu;
+            -webkit-animation-duration: 2s;
+            -webkit-animation-iteration-count: infinite;
+        }
+
     </style>
+
+    <script src="{{ url_for('static', filename='js/jquery.js') }}"></script>
+    <script>
+        $(document).ready(function () {
+            $("#submit_button").click(function () {
+                var username = $('.username').val();
+                var password = $('.password').val();
+                if (username == '') {
+                    alert("请输入账号");
+                    return false;
+                }
+
+                else {
+                    if (password == '') {
+                        alert("请输入密码");
+                        return false;
+                    }
+                    else
+                        $('#form').submit();
+                }
+
+                {#                var username = $('.username').val();#}
+                {#                var password = $('.password').val();#}
+                {#                alert(username + ' \n' + password);#}
+                {#                $.post(#}
+                {#                                        '{{ url_for('main.login') }}',#}
+                {#                        {username: username, password: password},#}
+                {#                        function () {#}
+                {#                            window.location.href = 'http://www.baidu.com';#}
+                {#                        }#}
+                {#                );#}
+            });
+
+        });
+
+
+    </script>
 {% endblock %}
