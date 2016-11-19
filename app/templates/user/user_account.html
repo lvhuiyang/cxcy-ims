@@ -3,7 +3,51 @@
 {% block content %}
 
     <div class="my_account">
-        <h1>My Account</h1>
+        <div class="info_area">
+            <h3>账号信息</h3>
+            <br/>
+            <p>账号：</p>
+            <p>真实姓名（使用者）：</p>
+            <p>创建时间：</p>
+        </div>
+
+        <div class="change_password_area">
+            <h3>密码修改</h3>
+            <br/>
+            <form>
+                <input type="text" title="username" value="账号 ：username (无需填写)" name="username" readonly>
+                <input type="password" title="old_password" name="old_password" placeholder="请输入原密码">
+                <input type="password" title="new_password" name="new_password" placeholder="请输入新密码">
+                <input type="password" title="new_password_confirm" name="new_password_confirm" placeholder="新密码确认">
+                <input type="submit" title="submit" value="确认并提交">
+            </form>
+        </div>
     </div>
+
+    <style>
+        div.info_area {
+            padding: 20px;
+            margin: auto;
+            height: 100px;
+            width: 400px;
+            background-color: #aaaaaa;
+        }
+
+        /* 定义表单样式 */
+        div.change_password_area input {
+            margin-bottom: 5px;
+            display: block;
+            height: 32px;
+            width: 250px;
+        }
+
+        div.change_password_area {
+            padding: 20px;
+            margin: auto;
+            width: 400px;
+            height: 240px;
+            background-color: #a093d1;
+        }
+    </style>
 
 {% endblock %}

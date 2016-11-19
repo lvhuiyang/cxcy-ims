@@ -7,7 +7,7 @@ class Project(db.Model):
     """
     __tablename__ = 'projects'
     id = db.Column(db.Integer, primary_key=True)
-    name = db.String(32)
+    name = db.Column(db.String(64))
     created_date = db.Column(db.DateTime())
     created_people = db.Column(db.String(32))
     competitions = db.relationship(

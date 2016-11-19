@@ -106,9 +106,6 @@ COMPETITION_PROJECTS = [
     '山东省青年创业大赛',
     '淄博市创客大赛',
     '哈尔滨大学生创业大赛',
-    '第二届互联网+大学生创新创业大赛'
+    '第二届互联网+大学生创新创业大赛',
+    '其他'
 ]
-
-# print(len(COMPETITION_PROJECTS))
-for i in COMPETITION_PROJECTS:
-    print(i)

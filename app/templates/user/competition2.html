@@ -1,0 +1,101 @@
+{% extends "user.html" %}
+
+{% block content %}
+    <link rel="stylesheet" href="//apps.bdimg.com/libs/jqueryui/1.10.4/css/jquery-ui.min.css">
+    <style>
+        div.competition {
+            margin: auto;
+            padding-top: 50px;
+            width: 600px;
+            height: 500px;
+            background-color: #fff9f4;
+        }
+
+        form {
+            width: 400px;
+        }
+
+        form input, select {
+            font-size: 15px;
+            font-family: "Microsoft yahei";
+            margin-bottom: 5px;
+            height: 30px;
+            width: 240px;
+            background-color: #bce8ff;
+        }
+
+        input[type='submit'], input[type='reset'] {
+            display: inline-block;
+            margin-right: 30px;
+            width: 100px;
+        }
+        div.button {
+           float: right;
+        }
+
+        p {
+            width: 100%;
+            text-align: right;
+        }
+    </style>
+
+    <div class="competition">
+        <h3>第二步，完成项目其他信息。 </h3>
+        <br/>
+        <h3>参赛项目：{{ this_project.name }}</h3>
+        <br/>
+        <form>
+            <p>参赛项目（不可更改）：<input type="text" title="project_name" value="{{ this_project.name }}" readonly></p>
+            <p>成果名称：<input type="text" title="achievement_name"></p>
+
+
+            <p>获奖级别：
+                <select title="achievement_name">
+                    <option value="国际级">国际级</option>
+                    <option value="赛区级">赛区级</option>
+                    <option value="国家级">国家级</option>
+                    <option value="省级">省级</option>
+                </select>
+            </p>
+            <p>获奖等级
+                <select title="achievement_name">
+                    <option value="金牌">金牌</option>
+                    <option value="银牌">银牌</option>
+                    <option value="铜牌">铜牌</option>
+                    <option value="特等奖">特等奖</option>
+                    <option value="一等奖">一等奖</option>
+                    <option value="二等奖">二等奖</option>
+                    <option value="三等奖">三等奖</option>
+                    <option value="优秀奖">优秀奖</option>
+                </select>
+            </p>
+
+            <p>获奖时间：<input type="text" id="datepicker" title="prize_date"></p>
+            <p>颁奖单位：<input type="text" id="datepicker" title="award_department"></p>
+            <p>主办方：<input type="text" id="datepicker" title="sponsor"></p>
+            <p>
+                附件上传:(支持格式：jpg, png；最大支持2M)
+                <input type="file" id="picture" title="picture" accept="image/jpeg image/png">
+            </p>
+            <br/>
+            <div class="button">
+                <input type="submit" value="提交">
+                <input type="reset" value="重置">
+            </div>
+        </form>
+
+
+    </div>
+
+
+    <script src="{{ url_for('static', filename='js/jquery.js') }}"></script>
+    <script src="//apps.bdimg.com/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+    <script type="text/javascript">
+        $("#datepicker").datepicker({
+            changeDay: true,
+            changeMonth: true,
+            changeYear: true
+        });
+    </script>
+
+{% endblock %}

@@ -1,9 +1,100 @@
-{% extends "user.html" %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>参赛项目选择</title>
 
-{% block content %}
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css"
+          type="text/css">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='img/folder_python.ico') }}" type="imgge/x-icon">
+    <style>
+        div.competition {
+            margin: auto;
+            width: 960px;
+        }
 
-    <div class="competition">
-        <h1>My competition</h1>
-    </div>
+        button#submit {
+            text-align: center;
+            display: block;
+            width: 150px;
+            height: 30px;
+            background-color: #ffcb7f;
+            text-decoration: none;
+            border-radius: 5px;
+        }
 
-{% endblock %}
+        button#submit:hover {
+            cursor: pointer;
+        }
+
+        input[type='radio'] {
+            display: block;
+            width: 15px;
+            height: 15px;
+            cursor: pointer;
+        }
+
+    </style>
+</head>
+<body>
+
+
+<div class="competition">
+    <h3>第一步，点击项目右侧的单选按钮进行参赛项目的选择，然后点击按钮提交。 </h3>
+    <button type="button" id="submit" onclick="test()">选中项目后点此提交</button>
+    <table id="example" class="display" cellspacing="0" width="100%">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>项目名</th>
+            <th>选择</th>
+        </tr>
+        </thead>
+        <tfoot>
+        <tr>
+            <th>ID</th>
+            <th>项目名</th>
+            <th>选择</th>
+        </tr>
+        </tfoot>
+        <tbody>
+        {% for project in projects %}
+            <tr>
+                <td>{{ project.id }}</td>
+                <td>{{ project.name }}</td>
+                <td><input type="radio" name="project" title="project" value="{{ project.id }}"></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+</div>
+
+<script src="{{ url_for('static', filename='js/jquery.js') }}"></script>
+<script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#example').DataTable({
+            "paging": false,
+            "ordering": false,
+            "info": false
+        });
+    });
+    function test() {
+        var radios = document.getElementsByName("project");
+        var flag = false;
+        for (var i = 0; i < radios.length; i++) {
+            if (radios[i].checked == true) {
+                flag = true;
+                window.location = '{{ url_for('main.user_competition') }}?project_id=' + radios[i].value;
+
+            }
+        }
+        if (flag == false)
+            alert("请先选择具体的参赛项目");
+    }
+</script>
+
+</body>
+</html>

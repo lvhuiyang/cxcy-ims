@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>请选择参赛项目</title>
+</head>
+<body>
+
+<link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css"
+      type="text/css">
+
+
+<div class="competition">
+    <h3>第一步，请选择参赛项目。 </h3>
+
+    <table id="myTable" class="display" cellspacing="0" width="100%">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>项目名</th>
+            <th>选择</th>
+        </tr>
+        </thead>
+        <tfoot>
+        <tr>
+            <th>ID</th>
+            <th>项目名</th>
+            <th>选择</th>
+        </tr>
+        </tfoot>
+        <tbody>
+        {% for project in projects %}
+            <tr>
+                <td>{{ project.id }}</td>
+                <td>{{ project.name }}</td>
+                <td><input type="radio" name="project" title="project" value="{{ project.id }}"></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    <button type="submit">提交</button>
+
+
+</div>
+
+<script src="{{ url_for('static', filename='js/jquery.js') }}"></script>
+<script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#myTable').DataTable();
+    });
+</script>
+
+</body>
+</html>

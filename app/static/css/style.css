@@ -103,16 +103,21 @@ ul li {
     border: 1px solid white;
 }
 
-#accordion .link:hover {
-    cursor: pointer;
-}
-
 div.link > a {
+    height: 30px;
     display: block;
     font-size: 18px;
     text-decoration: none;
     color: black;
 }
+
+div.link:hover {
+    cursor: pointer;
+}
+
+/*div.link > a:hover {*/
+/*background-color: #ffcb7f;*/
+/*}*/
 
 .submenu > li > a {
     display: block;
