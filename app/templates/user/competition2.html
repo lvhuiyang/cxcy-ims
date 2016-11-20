@@ -5,23 +5,22 @@
     <style>
         div.competition {
             margin: auto;
-            padding-top: 50px;
             width: 600px;
-            height: 500px;
-            background-color: #fff9f4;
+            height: 600px;
+        {#            background-color: #fff9f4;#}{#            border: solid 5px #dfe5eb;#}
         }
 
         form {
-            width: 400px;
+            width: 450px;
         }
 
         form input, select {
             font-size: 15px;
             font-family: "Microsoft yahei";
-            margin-bottom: 5px;
-            height: 30px;
-            width: 240px;
-            background-color: #bce8ff;
+            margin-bottom: 3px;
+            height: 24px;
+            width: 280px;
+            background-color: #b1d5eb;
         }
 
         input[type='submit'], input[type='reset'] {
@@ -29,8 +28,9 @@
             margin-right: 30px;
             width: 100px;
         }
+
         div.button {
-           float: right;
+            float: right;
         }
 
         p {
@@ -42,15 +42,14 @@
     <div class="competition">
         <h3>第二步，完成项目其他信息。 </h3>
         <br/>
-        <h3>参赛项目：{{ this_project.name }}</h3>
+        <h3>竞赛项目：{{ this_project.name }}</h3>
         <br/>
-        <form>
-            <p>参赛项目（不可更改）：<input type="text" title="project_name" value="{{ this_project.name }}" readonly></p>
-            <p>成果名称：<input type="text" title="achievement_name"></p>
-
-
+        <form action="{{ url_for('main.user_competition') }}" method="post" enctype="multipart/form-data">
+            <p>竞赛项目(不可更改)：<input type="text" title="project_name" value="{{ this_project.name }}" readonly></p>
+            <p><input type="hidden" name="project_id" value="{{ this_project.id }}"></p>
+            <p>成果名称：<input type="text" title="achievement_name" name="achievement_name" placeholder="请输入成果名称"></p>
             <p>获奖级别：
-                <select title="achievement_name">
+                <select title="prize_category" name="prize_category">
                     <option value="国际级">国际级</option>
                     <option value="赛区级">赛区级</option>
                     <option value="国家级">国家级</option>
@@ -58,7 +57,7 @@
                 </select>
             </p>
             <p>获奖等级
-                <select title="achievement_name">
+                <select title="prize_level" name="prize_level">
                     <option value="金牌">金牌</option>
                     <option value="银牌">银牌</option>
                     <option value="铜牌">铜牌</option>
@@ -69,17 +68,23 @@
                     <option value="优秀奖">优秀奖</option>
                 </select>
             </p>
-
-            <p>获奖时间：<input type="text" id="datepicker" title="prize_date"></p>
-            <p>颁奖单位：<input type="text" id="datepicker" title="award_department"></p>
-            <p>主办方：<input type="text" id="datepicker" title="sponsor"></p>
+            <p>参赛学生姓名:<input type="text" title="stu_name" name="stu_name" placeholder="请输入参赛学生姓名"></p>
+            <p>学生电话:<input type="text" title="stu_phone_number" name="stu_phone_number" placeholder="请输入学生电话"></p>
+            <p>学生学号:<input type="text" title="stu_number" name="stu_number" placeholder="请输入学生学号"></p>
+            <p>学生QQ:<input type="text" title="stu_qq" name="stu_qq" placeholder="请输入学生QQ"></p>
+            <p>专业班级:<input type="text" title="stu_class" name="stu_class" placeholder="请输入专业班级"></p>
+            <p>指导老师姓名:<input type="text" title="teacher_name" name="teacher_name" placeholder="请输入指导老师姓名"></p>
+            <p>指导老师职称:<input type="text" title="teacher_title" name="teacher_title" placeholder="请输入指导老师职称"></p>
+            <p>获奖时间：<input type="text" id="datepicker" title="prize_date" name="prize_date" placeholder="请输入获奖时间"></p>
+            <p>颁奖单位：<input type="text" name="award_department" title="award_department" placeholder="请输入颁奖单位"></p>
+            <p>主办方：<input type="text" name="sponsor" title="sponsor" placeholder="请输入主办方"></p>
             <p>
                 附件上传:(支持格式：jpg, png；最大支持2M)
-                <input type="file" id="picture" title="picture" accept="image/jpeg image/png">
+                <input type="file" name="picture" title="picture" accept="image/jpeg" >
             </p>
             <br/>
             <div class="button">
-                <input type="submit" value="提交">
+                <input type="submit" value="提交" id="submit">
                 <input type="reset" value="重置">
             </div>
         </form>
@@ -96,6 +101,12 @@
             changeMonth: true,
             changeYear: true
         });
+{#        $('#submit').click(#}
+{#                function () {#}
+{#                    alert("123");#}
+{#                    return true;#}
+{#                }#}
+{#        );#}
     </script>
 
 {% endblock %}

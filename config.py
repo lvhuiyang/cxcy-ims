@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import os
+from werkzeug.utils import secure_filename
 
 
 class Config:
@@ -13,6 +14,7 @@ class Config:
     DATABASE_INSTANCE = os.getenv('database_instance') or 'default'
     SQLALCHEMY_DATABASE_URI = 'mysql+pymysql://' + DATABASE_USER + ':' + DATABASE_PASSWORD + \
                               '@' + DATABASE_HOST + ':' + DATABASE_PORT + '/' + DATABASE_INSTANCE
+    UPLOAD_FOLDER = 'data'
     DEBUG = True
 
     @staticmethod

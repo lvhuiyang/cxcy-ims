@@ -11,7 +11,7 @@ def index():
         print("用户是登录状态")
     else:
         print("没有用户登录")
-        return redirect(url_for('main.user'))
+        return redirect(url_for('main.user_index'))
     return render_template("management.html")
 
 
@@ -36,7 +36,3 @@ def login():
 def manager():
     return render_template('management.html')
 
-
-@main.route('/user')
-def user():
-    return render_template('user.html')
