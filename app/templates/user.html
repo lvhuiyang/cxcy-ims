@@ -21,7 +21,7 @@
             </li>
 
             <li>
-                <div class="link">论文发表</div>
+                <div class="link"><a href="{{ url_for('main.user_thesis') }}">论文发表</a></div>
             </li>
             <li>
                 <div class="link">项目立项</div>
@@ -44,29 +44,31 @@
                     padding-top: 20px;
                     width: 500px;
                     height: 500px;
-{#                    background-color: #5cb85c;#}
+                {#                    background-color: #5cb85c;#}
                 }
-            div.p {
-                margin-top: 20px;
-                font-family: '微软雅黑';
-                font-size: 18px;
-            }
-            div.p>p {
-                padding-bottom: 5px;
-            }
+
+                div.p {
+                    margin-top: 20px;
+                    font-family: '微软雅黑';
+                    font-size: 18px;
+                }
+
+                div.p > p {
+                    padding-bottom: 5px;
+                }
             </style>
 
             <div class="user_index">
-                <h3>位置：<a href="{{ url_for('main.user_index') }}">用户首页</a> </h3>
+                <h3>位置：<a href="{{ url_for('main.user_index') }}">用户首页</a></h3>
                 <br/>
                 <h3>欢迎使用大学生创新创业活动管理系统</h3>
-            <div class="p">
+                <div class="p">
 
-                <p>用户名：</p>
-                <p>真是姓名/使用者：</p>
-                <p>用户状态：</p>
-                <p>123</p>
-            </div>
+                    <p>用户名：</p>
+                    <p>真是姓名/使用者：</p>
+                    <p>用户状态：</p>
+                    <p>123</p>
+                </div>
             </div>
 
         {% endblock %}

@@ -37,4 +37,4 @@ class Competition(db.Model):
     prize_date = db.Column(db.Date())  # 获奖日期
     award_department = db.Column(db.String(64))  # 颁奖单位
     sponsor = db.Column(db.String(64))  # 主办方
-    comment = db.Column(db.String(64))  # 备注
+    comment = db.Column(db.String(64))  # 备注--> 11.20 --> 附件名

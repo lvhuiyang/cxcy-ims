@@ -28,7 +28,7 @@ def create_admin():
         admin = User(
             username='admin',
             real_name='admin',
-            password_hash='admin_123456',
+            password='admin_123456',
             power=3,
             created_date=datetime.today(),
             created_people='System'

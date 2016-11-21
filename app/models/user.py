@@ -7,7 +7,7 @@ class User(UserMixin, db.Model):
     """
     用户账号信息
     """
-    __tablename__ = 'accounts'
+    __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(32), index=True, unique=True, nullable=True)
     real_name = db.Column(db.String(32), index=True)

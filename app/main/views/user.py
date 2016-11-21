@@ -43,7 +43,6 @@ def user_competition():
     else:
         # post请求接收表单
         try:
-
             file = request.files['picture']
         except Exception as e:
             print(e)
@@ -51,8 +50,13 @@ def user_competition():
         if not allowed_file(file.filename):
             print('不符合文件类型')
             redirect(url_for('mian.index'))
-        print('## file is ' + file + file.filename)
-        file.save(os.path.join('/data', get_random_str()))
+        # 获取文件扩展名并重命名，最后保存文件
+        filename_extension = secure_filename(file.filename).rsplit('.', 1)[1]
+        filename = '%s.%s' % (get_random_str(), filename_extension)
+        file.save(
+            os.path.join('data', filename)
+        )
+        # 创建某个数据库模型的实例
         competition = Competition(
             project_id=request.form['project_id'],
             achievement_name=request.form['achievement_name'],
@@ -67,7 +71,8 @@ def user_competition():
             teacher_title=request.form['teacher_title'],
             prize_date=request.form['prize_date'],
             award_department=request.form['award_department'],
-            sponsor=request.form['sponsor']
+            sponsor=request.form['sponsor'],
+            comment=filename
         )
         '''print(
             project_id,
@@ -86,7 +91,7 @@ def user_competition():
             sponsor
         )'''
         # competition = Competition()
-        return 'pass'
+        return '上传文件成功'
 
 
 @main.route('/user/thesis')

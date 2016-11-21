@@ -7,12 +7,13 @@ from flask_login import current_user
 @main.route('/')
 @main.route('/index')
 def index():
-    if current_user.is_authenticated:
-        print("用户是登录状态")
-    else:
-        print("没有用户登录")
+    if current_user.is_authenticated and \
+            (current_user.power == 3 or current_user.power == 2):
+        return redirect(url_for('main.manger_index'))
+    elif current_user.is_authenticated and current_user.power == 1:
         return redirect(url_for('main.user_index'))
-    return render_template("management.html")
+    else:
+        return redirect(url_for('main.login'))
 
 
 @main.route('/login', methods=['GET', 'POST'])
@@ -24,6 +25,8 @@ def login():
         password = request.form['password']
         print('username' + username + '\n' + 'password' + password)
         user = User.query.filter_by(username=username).first()
+        if user.verify_password(password):
+            return redirect(url_for('main.index'))
         return redirect(url_for('main.manager'))
         # if user.verify_password(password=password):
         #     return redirect(url_for('main.manager'))
@@ -35,4 +38,3 @@ def login():
 @main.route('/manager')
 def manager():
     return render_template('management.html')
-
