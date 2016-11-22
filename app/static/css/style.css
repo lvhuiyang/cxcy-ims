@@ -1,6 +1,7 @@
 * {
     margin: 0;
     padding: 0;
+    /*font-family: '微软雅黑';*/
 }
 
 body {
@@ -43,6 +44,13 @@ p.project_name {
     float: right;
     padding-right: 20px;
     padding-top: 20px;
+}
+
+div.flash {
+    background-color: #ffcb7f;
+    font-size: 16px;
+    color: red;
+    font-family: '微软雅黑';
 }
 
 .right-link > ul > li {
@@ -209,13 +217,5 @@ div.add_user {
     text-align: center;
 }
 
-/*用户列表*/
 
-#user_list {
-    margin: auto;
-    margin-top: 20px;
-    width: 600px;
-    height: 400px;
-    background-color: #c9c6ab;
-}
 

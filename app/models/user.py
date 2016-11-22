@@ -15,6 +15,7 @@ class User(UserMixin, db.Model):
     power = db.Column(db.Integer, nullable=True)
     created_date = db.Column(db.DateTime())
     created_people = db.Column(db.String(32))
+    comment = db.Column(db.String(32))
 
     @property
     def password(self):

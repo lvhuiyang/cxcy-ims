@@ -5,7 +5,7 @@
         <h2>添加新用户</h2>
         <br/>
         <form action="{{ url_for('main.manager_add_user') }}" method="post" class="form1" id="form1">
-            <input name="usernmae" placeholder="请输入用户名，建议使用英文数字！">
+            <input name="username" placeholder="请输入用户名，建议使用英文数字！">
             <input name="realname" placeholder="请输入使用者姓名或公司名">
             <input name="commit" placeholder="备注">
             <input type="submit" class="submit_button" value="提交" id="go_post">
@@ -22,7 +22,7 @@
     <script type="text/javascript">
         $('#go_post').click(
                 function () {
-                    var username = $('input[name=usernmae]').val();
+                    var username = $('input[name=username]').val();
                     var realname = $('input[name=realname]').val();
                     var commit = $('input[name=commit]').val();
                     if (username == '' || realname == '' || commit == '') {

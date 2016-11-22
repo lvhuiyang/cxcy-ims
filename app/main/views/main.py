@@ -4,6 +4,11 @@ from flask import render_template, redirect, url_for, request, flash
 from flask_login import login_required, current_user, login_user, logout_user
 
 
+@main.route('/test')
+def test():
+    return render_template('base.html')
+
+
 @main.route('/')
 @main.route('/index')
 def index():
@@ -25,16 +30,12 @@ def login():
         password = request.form['password']
         print('username' + username + '\n' + 'password' + password)
         user = User.query.filter_by(username=username).first()
-        if user.verify_password(password):
+        if user is not None and user.verify_password(password):
             login_user(user)
-            print("用户是否已经登录： --> ", current_user.is_authenticated)
             return redirect(url_for('main.index'))
-        return redirect(url_for('main.manager_index'))
-        # if user.verify_password(password=password):
-        #     return redirect(url_for('main.manager'))
-        # else:
-        #     flash("test")
-        #     return redirect(url_for('main.login'))
+        else:
+            flash("账号或者密码错误")
+            return redirect(url_for('main.login'))
 
 
 @login_required

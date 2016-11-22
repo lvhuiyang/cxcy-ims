@@ -1,34 +1,61 @@
-<div id="user_list">
-    <table id="user" class="display nowrap" cellspacing="0" width="100%">
-        <thead>
-        <tr>
-            <th>ID</th>
-            <th>用户名</th>
-            <th>使用者/公司名</th>
-            <th>备注</th>
-        </tr>
-        </thead>
-        <tfoot>
-        <tr>
-            <td>ID</td>
-            <td>用户名</td>
-            <td>使用者/公司名</td>
-            <td>备注</td>
-        </tr>
-        </tfoot>
-        <tbody>
-        <tr>
-            <td>内容1-1</td>
-            <td>内容2-1</td>
-            <td>内容3-1</td>
-            <td>内容3-1</td>
-        </tr>
-        <tr>
-            <td>内容2-1</td>
-            <td>内容2-2</td>
-            <td>内容2-3</td>
-            <td>内容2-3</td>
-        </tr>
-        </tbody>
-    </table>
-</div>
+{% extends "management.html" %}
+
+{% block content %}
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css" type="text/css">
+    <style type="text/css">
+        /*用户列表*/
+
+        #user_list {
+            margin: auto;
+            width: 750px;
+            height: 600px;
+        }
+    </style>
+    <div id="user_list">
+        <table id="user" class="display nowrap" cellspacing="0" width="100%">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>用户名</th>
+                <th>使用者/公司名</th>
+                <th>权限</th>
+                <th>创建日期</th>
+                <th>创建者</th>
+                <th>备注</th>
+            </tr>
+            </thead>
+            <tfoot>
+            <tr>
+                <td>ID</td>
+                <td>用户名</td>
+                <td>使用者/公司名</td>
+                <td>权限</td>
+                <td>创建日期</td>
+                <td>创建者</td>
+                <td>备注</td>
+            </tr>
+            </tfoot>
+            <tbody>
+            {% for user in users %}
+                <tr>
+                    <td>{{ user.id }}</td>
+                    <td>{{ user.username }}</td>
+                    <td>{{ user.real_name }}</td>
+                    <td>{{ user.power }}</td>
+                    <td>{{ user.created_date }}</td>
+                    <td>{{ user.created_people }}</td>
+                    <td>{{ user.comment }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/jquery.js') }}"></script>
+    <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#user').DataTable();
+        });
+    </script>
+{% endblock %}

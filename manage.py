@@ -37,6 +37,7 @@ def create_admin():
         db.session.commit()
         print("添加系统管理员账号成功")
     except Exception as e:
+        db.session.rollback()
         print(e)
 
 

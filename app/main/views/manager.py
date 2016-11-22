@@ -1,19 +1,55 @@
-from flask import render_template, request
-from flask_login import login_required
+from datetime import datetime
+from flask import render_template, request, flash, redirect, url_for
+from flask_login import login_required, current_user
+from app import db
 from app.main import main
+from app.models import User
+from app.decorators import manager_required, user_required
 
 
-@login_required
 @main.route('/manager')
+@login_required
+@manager_required
 def manager_index():
     return render_template('management.html')
 
 
+@main.route('/manager/add_user', methods=['GET', 'POST'])
 @login_required
-@main.route('/manager/add_user', methods=['GET','POST'])
+@manager_required
 def manager_add_user():
     if request.method == 'GET':
         return render_template('manager/add_user.html')
     else:
-        return 0
+        username = request.form['username']
+        print(username)
+        user = User.query.filter_by(username=username).first()
+        if user is not None:
+            flash("该用户名已经被注册过，请重新注册")
+            return redirect(url_for("main.manager_add_user"))
+        try:
+            new_user = User(
+                username=username,
+                real_name=1,
+                power=1,
+                password='123456',
+                created_date=datetime.today(),
+                created_people=current_user.username,
+                comment=request.form['comment']
+            )
+            db.session.add(new_user)
+            db.session.commit()
+            flash("新添加用户：" + new_user.username + "添加成功")
+        except Exception as e:
+            print(e)
+            db.session.rollback()
+            flash("未知错误")
+        return redirect(url_for('main.manager_add_user'))
 
+
+@main.route('/manager/user_list')
+@login_required
+@manager_required
+def manager_user_list():
+    users = User.query.all()
+    return render_template('manager/user_list.html', users=users)
