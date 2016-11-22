@@ -24,7 +24,10 @@
         <div class="right-link">
             <ul>
                 {% if current_user.is_authenticated %}
-                    <li class="text">欢迎您,123</li>
+                    <li class="text">欢迎您,{{ current_user.username }}</li>
+                    <li class="text">
+                        <a href="{{ url_for('main.logout') }}" style="color: blue">[ 退出登录 ]</a>
+                    </li>
                 {% else %}
                     <li class="user_logo"><img src="{{ url_for('static', filename='img/user_ok_32px.ico') }}"></li>
                     <li class="text"><a href="{{ url_for("main.login") }}">您好，请登录</a></li>

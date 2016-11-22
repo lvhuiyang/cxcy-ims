@@ -1,15 +1,41 @@
-<div class="add_user">
-    <h2>添加新用户</h2>
-    <br/>
-    <form action="#" method="post" class="form1">
-        <input name="account" placeholder="请输入用户名，建议使用英文数字！">
-        <input name="username" placeholder="请输入使用者姓名或公司名">
-        <input name="commit" placeholder="备注">
-        <button type="submit" class="submit_button">提交</button>
-        <button type="reset" class="reset_button">重置</button>
-    </form>
-    <p><strong>提示：</strong></p>
-    <p>1.新建用户初始密码为"123456" 6位数字，新用户应及时修改初始密码。</p>
-    <p>2.新用户用户名不可更改，使用者姓名/公司名称可以自行修改</p>
-    <p>3.备注仅管理员可见，方便管理，建议与上一个输入栏填写相同名称。</p>
-</div>
+{% extends "management.html" %}
+
+{% block content %}
+    <div class="add_user">
+        <h2>添加新用户</h2>
+        <br/>
+        <form action="{{ url_for('main.manager_add_user') }}" method="post" class="form1" id="form1">
+            <input name="usernmae" placeholder="请输入用户名，建议使用英文数字！">
+            <input name="realname" placeholder="请输入使用者姓名或公司名">
+            <input name="commit" placeholder="备注">
+            <input type="submit" class="submit_button" value="提交" id="go_post">
+            <input type="reset" class="reset_button" value="重置">
+        </form>
+        <p><strong>提示：</strong></p>
+        <p>1.新建用户初始密码为"123456" 6位数字，应及时提醒新用户修改初始密码。</p>
+        <p>2.新用户用户名不可更改，使用者姓名/公司名称可以自行修改</p>
+        <p>3.备注仅管理员可见，方便管理，建议与上一个输入栏填写相同名称。</p>
+    </div>
+
+
+    <script src="{{ url_for('static', filename='js/jquery.js') }}"></script>
+    <script type="text/javascript">
+        $('#go_post').click(
+                function () {
+                    var username = $('input[name=usernmae]').val();
+                    var realname = $('input[name=realname]').val();
+                    var commit = $('input[name=commit]').val();
+                    if (username == '' || realname == '' || commit == '') {
+                        alert("请填写全表单项");
+                        return false;
+                    }
+                    else
+                        return (confirm(
+                                "确认是否添加该用户？\n"
+                                + '用户名： ' + username + '\n'
+                                + '真是姓名/使用者： ' + realname
+                        ));
+                }
+        );
+    </script>
+{% endblock %}

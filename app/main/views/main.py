@@ -1,7 +1,7 @@
 from app.main import main
 from app.models import User
 from flask import render_template, redirect, url_for, request, flash
-from flask_login import current_user
+from flask_login import login_required, current_user, login_user, logout_user
 
 
 @main.route('/')
@@ -9,7 +9,7 @@ from flask_login import current_user
 def index():
     if current_user.is_authenticated and \
             (current_user.power == 3 or current_user.power == 2):
-        return redirect(url_for('main.manger_index'))
+        return redirect(url_for('main.manager_index'))
     elif current_user.is_authenticated and current_user.power == 1:
         return redirect(url_for('main.user_index'))
     else:
@@ -26,8 +26,10 @@ def login():
         print('username' + username + '\n' + 'password' + password)
         user = User.query.filter_by(username=username).first()
         if user.verify_password(password):
+            login_user(user)
+            print("用户是否已经登录： --> ", current_user.is_authenticated)
             return redirect(url_for('main.index'))
-        return redirect(url_for('main.manager'))
+        return redirect(url_for('main.manager_index'))
         # if user.verify_password(password=password):
         #     return redirect(url_for('main.manager'))
         # else:
@@ -35,6 +37,8 @@ def login():
         #     return redirect(url_for('main.login'))
 
 
-@main.route('/manager')
-def manager():
-    return render_template('management.html')
+@login_required
+@main.route('/logout')
+def logout():
+    logout_user()
+    return redirect(url_for('main.index'))

@@ -29,7 +29,7 @@ class User(UserMixin, db.Model):
         密码重设，初始密码为123456
         :return: None
         """
-        self.password_hash = '123456'
+        self.password = '123456'
 
     def verify_password(self, password):
         """
