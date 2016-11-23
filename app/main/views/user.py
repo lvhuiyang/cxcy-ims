@@ -91,6 +91,7 @@ def user_competition():
             sponsor
         )'''
         # competition = Competition()
+        flash('上传文件成功')
         return '上传文件成功'
 
 

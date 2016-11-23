@@ -1,7 +1,7 @@
 {% extends "management.html" %}
 
 {% block content %}
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css" type="text/css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/jquery.dataTables.min.css') }}" type="text/css">
     <style type="text/css">
         /*用户列表*/
 
@@ -9,6 +9,13 @@
             margin: auto;
             width: 750px;
             height: 600px;
+        }
+
+        button.reset_button {
+            width: 90px;
+            height: 25px;
+            border-radius: 2px;
+            background-color: #ffcb7f;
         }
     </style>
     <div id="user_list">
@@ -21,7 +28,8 @@
                 <th>权限</th>
                 <th>创建日期</th>
                 <th>创建者</th>
-                <th>备注</th>
+                {#                <th>备注</th>#}
+                <th>密码重置</th>
             </tr>
             </thead>
             <tfoot>
@@ -32,7 +40,8 @@
                 <td>权限</td>
                 <td>创建日期</td>
                 <td>创建者</td>
-                <td>备注</td>
+                {#                <td>备注</td>#}
+                <td>密码重置</td>
             </tr>
             </tfoot>
             <tbody>
@@ -44,7 +53,10 @@
                     <td>{{ user.power }}</td>
                     <td>{{ user.created_date }}</td>
                     <td>{{ user.created_people }}</td>
-                    <td>{{ user.comment }}</td>
+                    {# <td>{{ user.comment }}</td>#}
+                    <td>
+                        <button type="button" class="reset_button">密码重置</button>
+                    </td>
                 </tr>
             {% endfor %}
             </tbody>
@@ -52,10 +64,22 @@
     </div>
 
     <script src="{{ url_for('static', filename='js/jquery.js') }}"></script>
-    <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+    <script src="{{ url_for('static', filename='js/jquery.dataTables.min.js') }}"></script>
     <script>
         $(document).ready(function () {
             $('#user').DataTable();
         });
+
+        $('.reset_button').click(function () {
+            if (confirm("是否对该用户进行密码重置？ 充值后该账号密码为\'123456\' 6个数字")) {
+                //进行请求
+                alert(this.value);
+            }
+            else {
+                //略过
+            }
+        });
+
+
     </script>
 {% endblock %}
