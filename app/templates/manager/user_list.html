@@ -70,10 +70,25 @@
             $('#user').DataTable();
         });
 
-        $('.reset_button').click(function () {
+        $('.reset_button').click(function (e) {
+            var v_id = $(e.target).parent().parent().children('td');
+            {#            var v_id = $(e.target).attr('class');#}
+
             if (confirm("是否对该用户进行密码重置？ 充值后该账号密码为\'123456\' 6个数字")) {
                 //进行请求
-                alert(this.value);
+                post_id = v_id[0].innerHTML;
+                {#                alert(post_id);#}
+                $.post(
+                        '{{ url_for('main.manager_reset_password') }}',
+                        {'user_id': post_id},
+                        function (result) {
+                            {#                            alert("result is " + result);#}
+                            if (result == 'OK')
+                                alert("指定修改密码成功");
+                            else
+                                alert("发生了未知错误");
+                        }
+                );
             }
             else {
                 //略过

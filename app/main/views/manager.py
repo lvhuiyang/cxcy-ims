@@ -22,7 +22,7 @@ def manager_add_user():
         return render_template('manager/add_user.html')
     else:
         username = request.form['username']
-        print(username)
+        # print(username)
         user = User.query.filter_by(username=username).first()
         if user is not None:
             flash("该用户名已经被注册过，请重新注册")
@@ -85,3 +85,19 @@ def manager_add_new_project():
 def manager_project_list():
     projects = Project.query.all()
     return render_template('manager/project_list.html', projects=projects)
+
+
+@main.route('/manager/reset_password', methods=['POST'])
+@login_required
+@manager_required
+def manager_reset_password():
+    this_user = User.query.filter_by(id=request.form['user_id']).first()
+    try:
+        this_user.password = '123456'
+        db.session.add(this_user)
+        db.session.commit()
+    except Exception as e:
+        print(e)
+        db.session.rollback()
+        return 'ERROR'
+    return 'OK'
