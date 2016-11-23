@@ -1,0 +1,88 @@
+{% extends "management.html" %}
+
+{% block content %}
+
+    <style type="text/css">
+        div.add_new_project {
+            margin: auto;
+            margin-top: 20px;
+            width: 600px;
+            height: 300px;
+        }
+
+        .form1 {
+            width: 220px;
+            height: 200px;
+            margin: auto;
+        }
+
+        .form1 > input {
+            height: 40px;
+            width: 240px;
+            margin-bottom: 10px;
+            font-size: 16px;
+            /*display: block;*/
+        }
+
+        .form1 > input.submit_button {
+            display: inline-block;
+            height: 35px;
+            width: 100px;
+            border-radius: 5px;
+            font-size: 16px;
+            background-color: #ffcb7f;
+        }
+
+        .form1 > input.reset_button {
+            display: inline-block;
+            margin-left: 12px;
+            height: 35px;
+            width: 100px;
+            border-radius: 5px;
+            font-size: 16px;
+            background-color: #ffcb7f;
+        }
+
+        .add_new_project > p {
+            padding-left: 50px;
+            font-family: '微软雅黑';
+        }
+
+        .add_new_project h2 {
+            text-align: center;
+        }
+
+    </style>
+
+    <div class="add_new_project">
+        <h2>添加新参赛项目</h2>
+        <br/>
+        <form action="{{ url_for('main.manager_add_new_project') }}" method="post" class="form1" id="form1">
+            <input name="project_name" placeholder="请输入参赛项目">
+            <input type="submit" class="submit_button" value="提交" id="go_post">
+            <input type="reset" class="reset_button" value="重置">
+        </form>
+        <p><strong>提示：</strong></p>
+        <p>1.此页面用于管理员添加新的参赛项目。</p>
+        <p>2.<a href="#">点此查看已经存在的项目详情</a>，或者点击左侧 项目管理 => 查看项目列表。</p>
+    </div>
+
+
+    <script src="{{ url_for('static', filename='js/jquery.js') }}"></script>
+    <script type="text/javascript">
+        $('#go_post').click(
+                function () {
+                    var project_name = $('input[name=project_name]').val();
+                    if (project_name == '' || project_name == null) {
+                        alert("请填写好项目名称");
+                        return false;
+                    }
+                    else
+                        return (confirm(
+                                "确认是否添加该项目名？\n"
+                                + '项目名： ' + project_name
+                        ));
+                }
+        );
+    </script>
+{% endblock %}

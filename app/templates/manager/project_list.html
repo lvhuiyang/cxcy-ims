@@ -1,41 +1,81 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <script type="text/javascript">
-        function getCookie(c_name) {
-            if (document.cookie.length > 0) {
-                c_start = document.cookie.indexOf(c_name + "=");
-                if (c_start != -1) {
-                    c_start = c_start + c_name.length + 1;
-                    c_end = document.cookie.indexOf(";", c_start);
-                    if (c_end == -1) c_end = document.cookie.length;
-                    return unescape(document.cookie.substring(c_start, c_end))
-                }
-            }
-            return ""
+    <meta charset="UTF-8">
+    <title>项目列表</title>
+
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css"
+          type="text/css">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='img/folder_python.ico') }}" type="imgge/x-icon">
+    <style>
+        div.competition {
+            margin: auto;
+            width: 960px;
         }
 
-        function setCookie(c_name, value, expiredays) {
-            var exdate = new Date();
-            exdate.setDate(exdate.getDate() + expiredays);
-            document.cookie = c_name + "=" + escape(value) +
-                    ((expiredays == null) ? "" : ";expires=" + exdate.toGMTString())
-        }
-
-        function checkCookie() {
-            username = getCookie('username');
-            if (username != null && username != "") {
-                alert('Welcome again ' + username + '!')
-            }
-            else {
-                username = prompt('Please enter your name:', "");
-                if (username != null && username != "") {
-                    setCookie('username', username, 365)
-                }
-            }
-        }
-    </script>
+    </style>
 </head>
+<body>
 
-<body onLoad="checkCookie()">
+
+<div class="competition">
+    <h3>所有项目列表如下。<a href="{{ url_for('main.index') }}">返回首页</a></h3>
+    <table id="example" class="display" cellspacing="0" width="100%">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>项目名</th>
+            <th>创建日期</th>
+            <th>创建者</th>
+        </tr>
+        </thead>
+        <tfoot>
+        <tr>
+            <th>ID</th>
+            <th>项目名</th>
+            <th>创建日期</th>
+            <th>创建者</th>
+        </tr>
+        </tfoot>
+        <tbody>
+        {% for project in projects %}
+            <tr>
+                <td>{{ project.id }}</td>
+                <td>{{ project.name }}</td>
+                <td>{{ project.created_date }}</td>
+                <td>{{ project.created_people }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+</div>
+
+<script src="{{ url_for('static', filename='js/jquery.js') }}"></script>
+<script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#example').DataTable({
+            "paging": false,
+            "ordering": false,
+            "info": false
+        });
+    });
+    function test() {
+        var radios = document.getElementsByName("project");
+        var flag = false;
+        for (var i = 0; i < radios.length; i++) {
+            if (radios[i].checked == true) {
+                flag = true;
+                window.location = '{{ url_for('main.user_competition') }}?project_id=' + radios[i].value;
+
+            }
+        }
+        if (flag == false)
+            alert("请先选择具体的参赛项目");
+    }
+</script>
+
 </body>
 </html>
