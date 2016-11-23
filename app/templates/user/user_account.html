@@ -2,27 +2,6 @@
 
 {% block content %}
 
-    <div class="my_account">
-        <div class="info_area">
-            <h3>账号信息</h3>
-            <br/>
-            <p>账号：</p>
-            <p>真实姓名（使用者）：</p>
-            <p>创建时间：</p>
-        </div>
-
-        <div class="change_password_area">
-            <h3>密码修改</h3>
-            <br/>
-            <form>
-                <input type="text" title="username" value="账号 ：username (无需填写)" name="username" readonly>
-                <input type="password" title="old_password" name="old_password" placeholder="请输入原密码">
-                <input type="password" title="new_password" name="new_password" placeholder="请输入新密码">
-                <input type="password" title="new_password_confirm" name="new_password_confirm" placeholder="新密码确认">
-                <input type="submit" title="submit" value="确认并提交">
-            </form>
-        </div>
-    </div>
 
     <style>
         div.info_area {
@@ -30,15 +9,7 @@
             margin: auto;
             height: 100px;
             width: 400px;
-            background-color: #aaaaaa;
-        }
-
-        /* 定义表单样式 */
-        div.change_password_area input {
-            margin-bottom: 5px;
-            display: block;
-            height: 32px;
-            width: 250px;
+{#            background-color: #aaaaaa;#}
         }
 
         div.change_password_area {
@@ -46,8 +17,61 @@
             margin: auto;
             width: 400px;
             height: 240px;
-            background-color: #a093d1;
         }
+
+        /* 定义表单样式 */
+        input.text {
+            margin-bottom: 5px;
+            display: block;
+            height: 32px;
+            width: 230px;
+        }
+
+        input.button {
+            width: 113px;
+            height: 30px;
+            background-color: #ffcb7f;
+        }
+
+
     </style>
+
+    <div class="my_account">
+        <div class="info_area">
+            <h3>账号信息</h3>
+            <br/>
+            <p>账号：{{ current_user.username }}</p>
+            <p>真实姓名（使用者）：{{ current_user.real_name }}</p>
+            <p>创建时间：{{ current_user.created_date }}</p>
+        </div>
+
+        <div class="change_password_area">
+            <h3>密码修改</h3>
+            <br/>
+            <form action="{{ url_for('main.user_change_password') }}" method="post">
+                <input type="text" title="username" value="{{ current_user.username }}" name="username"
+                       readonly class="text">
+                <input type="password" title="old_password" name="old_password" placeholder="请输入原密码" class="text">
+                <input type="password" title="new_password" name="new_password" placeholder="请输入新密码" class="text">
+                <input type="password" title="new_password_confirm" name="new_password_confirm" placeholder="新密码确认"
+                       class="text">
+                {#                <input type="submit" title="submit" value="确认并提交">#}
+                <input type="submit" id="subm" value="确认并提交" class="button">
+                <input type="reset" id="reset" value="重置" class="button">
+            </form>
+        </div>
+    </div>
+
+
+    <script type="text/javascript">
+        window.onload = function () {
+            document.getElementById("subm").onclick = function () {
+                alert("Hello WOrld");
+                return false;
+
+            }
+        }
+
+    </script>
 
 {% endblock %}
