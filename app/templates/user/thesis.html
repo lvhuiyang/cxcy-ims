@@ -1,9 +1,119 @@
 {% extends "user.html" %}
 
 {% block content %}
+    <link rel="stylesheet" href="//apps.bdimg.com/libs/jqueryui/1.10.4/css/jquery-ui.min.css">
+    <style>
+        div.thesis {
+            margin: auto;
+            width: 600px;
+            height: 600px;
+        }
 
-    <div class="competition">
-        <h1>My competition</h1>
+        form {
+            width: 450px;
+        }
+
+        form input, select {
+            font-size: 15px;
+            font-family: "Microsoft yahei";
+            margin-bottom: 3px;
+            height: 24px;
+            width: 280px;
+            background-color: #b1d5eb;
+        }
+
+        input[type='submit'], input[type='reset'] {
+            display: inline-block;
+            margin-right: 30px;
+            width: 100px;
+        }
+
+        div.button {
+            float: right;
+        }
+
+        p {
+            width: 100%;
+            text-align: right;
+        }
+    </style>
+
+    <div class="thesis">
+        <h3>第二步，完成项目其他信息。 </h3>
+        <br/>
+        <form action="{{ url_for('main.user_competition') }}" method="post" enctype="multipart/form-data">
+            <p>所在学院：<input type="text" title="achievement_name" name="achievement_name" placeholder="请输入成果名称"></p>
+            <p>获奖级别：
+                <select title="prize_category" name="prize_category">
+                    <option value="国际级">国际级</option>
+                    <option value="赛区级">赛区级</option>
+                    <option value="国家级">国家级</option>
+                    <option value="省级">省级</option>
+                </select>
+            </p>
+            <p>获奖等级
+                <select title="prize_level" name="prize_level">
+                    <option value="金牌">金牌</option>
+                    <option value="银牌">银牌</option>
+                    <option value="铜牌">铜牌</option>
+                    <option value="特等奖">特等奖</option>
+                    <option value="一等奖">一等奖</option>
+                    <option value="二等奖">二等奖</option>
+                    <option value="三等奖">三等奖</option>
+                    <option value="优秀奖">优秀奖</option>
+                </select>
+            </p>
+            <p>参赛学生姓名:<input type="text" title="stu_name" name="stu_name" placeholder="请输入参赛学生姓名"></p>
+            <p>学生电话:<input type="text" title="stu_phone_number" name="stu_phone_number" placeholder="请输入学生电话"></p>
+            <p>学生学号:<input type="text" title="stu_number" name="stu_number" placeholder="请输入学生学号"></p>
+            <p>学生QQ:<input type="text" title="stu_qq" name="stu_qq" placeholder="请输入学生QQ"></p>
+            <p>专业班级:<input type="text" title="stu_class" name="stu_class" placeholder="请输入专业班级"></p>
+            <p>指导老师姓名:<input type="text" title="teacher_name" name="teacher_name" placeholder="请输入指导老师姓名"></p>
+            <p>指导老师职称:<input type="text" title="teacher_title" name="teacher_title" placeholder="请输入指导老师职称"></p>
+            <p>获奖时间：<input type="text" id="datepicker" title="prize_date" name="prize_date" placeholder="请输入获奖时间"></p>
+            <p>颁奖单位：<input type="text" name="award_department" title="award_department" placeholder="请输入颁奖单位"></p>
+            <p>主办方：<input type="text" name="sponsor" title="sponsor" placeholder="请输入主办方"></p>
+            <p>
+                附件上传:(支持格式：jpg, png；最大支持2M)
+                <input type="file" name="picture" title="picture" accept="image/jpeg">
+            </p>
+            <br/>
+            <div class="button">
+                <input type="submit" value="提交" id="submit">
+                <input type="reset" value="重置">
+            </div>
+        </form>
+
+
     </div>
+
+
+    <script src="{{ url_for('static', filename='js/jquery.js') }}"></script>
+    <script src="//apps.bdimg.com/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+    <script type="text/javascript">
+        $("#datepicker").datepicker({
+            changeDay: true,
+            changeMonth: true,
+            changeYear: true
+        });
+        $('#submit').click(
+                function () {
+                    var values = $("input[type='text']");
+                    var files = $("input[type='file']");
+                    if (!files.val()) {
+                        alert('附件项请认真写全');
+                        return false;
+                    }
+
+                    for (var i in values) {
+                        if (values[i].value == '') {
+                            alert('表单项请认真写全');
+                            return false;
+                        }
+                    }
+                    return confirm("提交后不能更改，确认是否提交？");
+                }
+        );
+    </script>
 
 {% endblock %}

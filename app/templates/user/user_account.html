@@ -9,7 +9,7 @@
             margin: auto;
             height: 100px;
             width: 400px;
-{#            background-color: #aaaaaa;#}
+        {#            background-color: #aaaaaa;#}
         }
 
         div.change_password_area {
@@ -66,8 +66,24 @@
     <script type="text/javascript">
         window.onload = function () {
             document.getElementById("subm").onclick = function () {
-                alert("Hello WOrld");
-                return false;
+                var old_password = $("[name='old_password']").val();
+                var new_password = $("[name='new_password']").val();
+                var new_password_confirm = $("[name='new_password_confirm']").val();
+                if (old_password == '' | new_password == '' || new_password_confirm == '') {
+                    alert("表单内容任何一项不能为空");
+                    return false;
+                }
+                else {
+                    if (new_password_confirm == new_password) {
+                        //post
+                        return true;
+                    }
+                    else {
+                        alert("两次新密码必须一致");
+                        return false;
+                    }
+                }
+
 
             }
         }

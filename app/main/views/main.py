@@ -28,7 +28,7 @@ def login():
     else:
         username = request.form['username']
         password = request.form['password']
-        print('username' + username + '\n' + 'password' + password)
+        # print('username' + username + '\n' + 'password' + password)
         user = User.query.filter_by(username=username).first()
         if user is not None and user.verify_password(password):
             login_user(user)

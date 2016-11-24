@@ -63,7 +63,7 @@ def user_change_password():
                     flash("密码修改成功")
                     return redirect(url_for('main.user_profile'))
                 else:
-                    flash("XXXXX")
+                    flash("发生了未知错误已经将页面跳转")
                     return redirect(url_for('main.user_profile'))
             else:
                 # 原密码不正确
@@ -100,56 +100,68 @@ def user_competition():
     else:
         # post请求接收表单
         try:
+            # 尝试获取文件
             file = request.files['picture']
         except Exception as e:
             print(e)
             return '未知错误'
         if not allowed_file(file.filename):
-            print('不符合文件类型')
-            redirect(url_for('mian.index'))
-        # 获取文件扩展名并重命名，最后保存文件
-        filename_extension = secure_filename(file.filename).rsplit('.', 1)[1]
-        filename = '%s.%s' % (get_random_str(), filename_extension)
-        file.save(
-            os.path.join('data', filename)
-        )
-        # 创建某个数据库模型的实例
-        competition = Competition(
-            project_id=request.form['project_id'],
-            achievement_name=request.form['achievement_name'],
-            prize_category=request.form['prize_category'],
-            prize_level=request.form['prize_level'],
-            stu_name=request.form['stu_name'],
-            stu_phone_number=request.form['stu_phone_number'],
-            stu_number=request.form['stu_number'],
-            stu_qq=request.form['stu_qq'],
-            stu_class=request.form['stu_class'],
-            teacher_name=request.form['teacher_name'],
-            teacher_title=request.form['teacher_title'],
-            prize_date=request.form['prize_date'],
-            award_department=request.form['award_department'],
-            sponsor=request.form['sponsor'],
-            comment=filename
-        )
-        '''print(
-            project_id,
-            achievement_name,
-            prize_category,
-            prize_level,
-            stu_name,
-            stu_phone_number,
-            stu_number,
-            stu_qq,
-            stu_class,
-            teacher_name,
-            teacher_title,
-            prize_date,
-            award_department,
-            sponsor
-        )'''
-        # competition = Competition()
-        flash('上传文件成功')
-        return '上传文件成功'
+            flash('不符合文件类型')
+            # 返回提交前的url
+            return redirect(request.referrer)
+
+        try:
+            # 获取文件扩展名并重命名，最后保存文件
+            filename_extension = secure_filename(file.filename).rsplit('.', 1)[1]
+            filename = '%s.%s' % (get_random_str(), filename_extension)
+            file.save(
+                os.path.join('data', filename)
+            )
+            # 创建某个数据库模型的实例
+            competition = Competition(
+                project_id=request.form['project_id'],
+                achievement_name=request.form['achievement_name'],
+                prize_category=request.form['prize_category'],
+                prize_level=request.form['prize_level'],
+                stu_name=request.form['stu_name'],
+                stu_phone_number=request.form['stu_phone_number'],
+                stu_number=request.form['stu_number'],
+                stu_qq=request.form['stu_qq'],
+                stu_class=request.form['stu_class'],
+                teacher_name=request.form['teacher_name'],
+                teacher_title=request.form['teacher_title'],
+                prize_date=request.form['prize_date'],
+                award_department=request.form['award_department'],
+                sponsor=request.form['sponsor'],
+                comment=filename
+            )
+            # 打印数据用以测试
+            '''print(
+                project_id,
+                achievement_name,
+                prize_category,
+                prize_level,
+                stu_name,
+                stu_phone_number,
+                stu_number,
+                stu_qq,
+                stu_class,
+                teacher_name,
+                teacher_title,
+                prize_date,
+                award_department,
+                sponsor
+            )'''
+            # competition = Competition()
+            db.session.add(competition)
+            db.session.commit()
+            flash('竞赛获奖提交成功')
+            return redirect(url_for('main.user_submit_history'))
+        except Exception as e:
+            db.session.rollback()
+            print(e)
+            flash("发生了未知错误已经将页面跳转")
+            return redirect(request.referrer)
 
 
 @main.route('/user/thesis')

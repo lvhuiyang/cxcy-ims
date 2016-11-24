@@ -7,7 +7,6 @@
             margin: auto;
             width: 600px;
             height: 600px;
-        {#            background-color: #fff9f4;#}{#            border: solid 5px #dfe5eb;#}
         }
 
         form {
@@ -80,7 +79,7 @@
             <p>主办方：<input type="text" name="sponsor" title="sponsor" placeholder="请输入主办方"></p>
             <p>
                 附件上传:(支持格式：jpg, png；最大支持2M)
-                <input type="file" name="picture" title="picture" accept="image/jpeg" >
+                <input type="file" name="picture" title="picture" accept="image/jpeg">
             </p>
             <br/>
             <div class="button">
@@ -103,8 +102,20 @@
         });
         $('#submit').click(
                 function () {
-                    alert("123");
-                    return false;
+                    var values = $("input[type='text']");
+                    var files = $("input[type='file']");
+                    if (!files.val()) {
+                        alert('附件项请认真写全');
+                        return false;
+                    }
+
+                    for (var i in values) {
+                        if (values[i].value == '') {
+                            alert('表单项请认真写全');
+                            return false;
+                        }
+                    }
+                    return confirm("提交后不能更改，确认是否提交？");
                 }
         );
     </script>
