@@ -1,5 +1,9 @@
 {% extends "user.html" %}
 
+{% block title %}
+    参赛项目提交
+{% endblock %}
+
 {% block content %}
     <link rel="stylesheet" href="//apps.bdimg.com/libs/jqueryui/1.10.4/css/jquery-ui.min.css">
     <style>
@@ -78,8 +82,8 @@
             <p>颁奖单位：<input type="text" name="award_department" title="award_department" placeholder="请输入颁奖单位"></p>
             <p>主办方：<input type="text" name="sponsor" title="sponsor" placeholder="请输入主办方"></p>
             <p>
-                附件上传:(支持格式：jpg, png；最大支持2M)
-                <input type="file" name="picture" title="picture" accept="image/jpeg">
+                附件上传:(支持格式：jpg, png；最大支持3M)
+                <input type="file" name="picture" title="picture" accept="image/jpeg,image/png ">
             </p>
             <br/>
             <div class="button">

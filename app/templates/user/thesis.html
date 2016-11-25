@@ -1,7 +1,12 @@
 {% extends "user.html" %}
 
+{% block title %}
+    论文发表
+{% endblock %}
+
 {% block content %}
-    <link rel="stylesheet" href="//apps.bdimg.com/libs/jqueryui/1.10.4/css/jquery-ui.min.css">
+    {#    <link rel="stylesheet" href="//apps.bdimg.com/libs/jqueryui/1.10.4/css/jquery-ui.min.css">#}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/jquery-ui.min.css') }}">
     <style>
         div.thesis {
             margin: auto;
@@ -42,7 +47,7 @@
         <h3>第二步，完成项目其他信息。 </h3>
         <br/>
         <form action="{{ url_for('main.user_competition') }}" method="post" enctype="multipart/form-data">
-            <p>所在学院：<input type="text" title="achievement_name" name="achievement_name" placeholder="请输入成果名称"></p>
+            <p>所在学院：<input type="text" title="stu_academy" name="achievement_name" placeholder="请输入所在学院"></p>
             <p>获奖级别：
                 <select title="prize_category" name="prize_category">
                     <option value="国际级">国际级</option>
@@ -89,7 +94,7 @@
 
 
     <script src="{{ url_for('static', filename='js/jquery.js') }}"></script>
-    <script src="//apps.bdimg.com/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+    <script src="{{ url_for('static',filename='js/jquery-ui.min.js') }}"></script>
     <script type="text/javascript">
         $("#datepicker").datepicker({
             changeDay: true,

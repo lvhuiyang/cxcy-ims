@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>首页</title>
+    <title>{% block title %}首页{% endblock %}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" type="text/css">
     <link rel="shortcut icon" href="{{ url_for('static', filename='img/folder_python.ico') }}" type="imgge/x-icon">
     <script src="{{ url_for('static', filename='js/jquery.js') }}"></script>

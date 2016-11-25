@@ -1,5 +1,9 @@
 {% extends "base.html" %}
 
+{% block title %}
+    用户首页
+{% endblock %}
+
 {% block main %}
 
     <div class="left" id="accordion">
@@ -24,13 +28,13 @@
                 <div class="link"><a href="{{ url_for('main.user_thesis') }}">论文发表</a></div>
             </li>
             <li>
-                <div class="link">项目立项</div>
+                <div class="link"><a href="{{ url_for('main.user_create_project') }}">项目立项</a></div>
             </li>
             <li>
-                <div class="link">公司注册</div>
+                <div class="link"><a href="{{ url_for('main.user_company') }}">公司注册</a></div>
             </li>
             <li>
-                <div class="link">其他成果</div>
+                <div class="link"><a href="{{ url_for('main.user_other') }}">其他成果</a></div>
             </li>
         </ul>
     </div>

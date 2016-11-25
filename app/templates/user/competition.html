@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>参赛项目选择</title>
 
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css"
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/jquery.dataTables.min.css') }}"
           type="text/css">
     <link rel="shortcut icon" href="{{ url_for('static', filename='img/folder_python.ico') }}" type="imgge/x-icon">
     <style>
@@ -40,8 +40,9 @@
 
 
 <div class="competition">
-    <h3>第一步，点击项目右侧的单选按钮进行参赛项目的选择，然后点击按钮提交。<a href="{{ url_for('main.index') }}">返回首页</a></h3>
+    <h3>第一步，点击项目右侧的单选按钮进行参赛项目的选择，然后点击下方按钮提交。</h3>
     <button type="button" id="submit" onclick="test()">选中项目后点此提交</button>
+    <h3><a href="{{ url_for('main.index') }}">返回首页</a></h3>
     <table id="example" class="display" cellspacing="0" width="100%">
         <thead>
         <tr>
@@ -72,7 +73,7 @@
 </div>
 
 <script src="{{ url_for('static', filename='js/jquery.js') }}"></script>
-<script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+<script src="{{ url_for('static', filename='js/jquery.dataTables.min.js') }}"></script>
 <script>
     $(document).ready(function () {
         $('#example').DataTable({
