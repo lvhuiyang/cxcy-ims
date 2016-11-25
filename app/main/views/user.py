@@ -9,6 +9,7 @@ from app.create_random_str import get_random_str
 from app.models import Project, Competition, User
 
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg'])
+SAVE_PATH = 'app/picture'
 
 
 def allowed_file(filename):
@@ -112,10 +113,12 @@ def user_competition():
 
         try:
             # 获取文件扩展名并重命名，最后保存文件
-            filename_extension = secure_filename(file.filename).rsplit('.', 1)[1]
+            print('file.filename   ', file.filename)
+            filename_extension = secure_filename(file.filename).rsplit('.', 1)[0]
+            print(filename_extension)
             filename = '%s.%s' % (get_random_str(), filename_extension)
             file.save(
-                os.path.join('data', filename)
+                os.path.join(SAVE_PATH, filename)
             )
             # 创建某个数据库模型的实例
             competition = Competition(

@@ -10,11 +10,11 @@ class Project(db.Model):
     name = db.Column(db.String(64))
     created_date = db.Column(db.DateTime())
     created_people = db.Column(db.String(32))
-    competitions = db.relationship(
-        'Competition',
-        backref='projects',
-        lazy='dynamic'
-    )
+    # competitions = db.relationship(
+    #     'Competition',
+    #     backref='projects',
+    #     lazy='dynamic'
+    # )
 
 
 class Competition(db.Model):
@@ -23,7 +23,8 @@ class Competition(db.Model):
     """
     __tablename__ = 'competitions'  # 表名
     id = db.Column(db.Integer, primary_key=True)  # id 作为主键
-    project_id = db.Column(db.Integer(), db.ForeignKey('projects.id'))  # 项目名，外键连接到项目名id
+    project_id = db.Column(db.Integer())  # 项目名，外键连接到项目名id
+    # project_id = db.Column(db.Integer(), db.ForeignKey('projects.id'))  # 项目名，外键连接到项目名id
     achievement_name = db.Column(db.String(64))  # 成果名称
     prize_category = db.Column(db.String(64))  # 获奖类型：国际级别，国家级别...
     prize_level = db.Column(db.String(64))  # 获奖等级 一二三等奖
@@ -34,7 +35,7 @@ class Competition(db.Model):
     stu_class = db.Column(db.String(64))  # 专业班级
     teacher_name = db.Column(db.String(64))  # 教师姓名
     teacher_title = db.Column(db.String(64))  # 教师职称
-    prize_date = db.Column(db.Date())  # 获奖日期
+    prize_date = db.Column(db.String(64))  # 获奖日期
     award_department = db.Column(db.String(64))  # 颁奖单位
     sponsor = db.Column(db.String(64))  # 主办方
     comment = db.Column(db.String(64))  # 备注--> 11.20 --> 附件名

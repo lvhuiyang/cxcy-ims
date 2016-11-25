@@ -97,4 +97,4 @@ ENV/
 log/
 
 # data file
-data/
+app/picture_data

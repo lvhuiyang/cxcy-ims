@@ -16,7 +16,7 @@ class Company(db.Model):
     legal_person_class = db.Column(db.String(64))  # 专业班级
     register_addr = db.Column(db.String(64))  # 公司注册地址
     register_capital = db.Column(db.String(64))  # 公司注册资本
-    register_date = db.Column(db.DateTime())  # 公司注册时间
+    register_date = db.Column(db.String(64))  # 公司注册时间
     scope = db.Column(db.String(64))  # 公司经营范围
     credit_code = db.Column(db.String(64))  # 公司经营范围
     comment = db.Column(db.String(64))  # 备注
