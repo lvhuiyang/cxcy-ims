@@ -1,7 +1,7 @@
 {% extends "user.html" %}
 
 {% block title %}
-    论文发表
+    获批专利
 {% endblock %}
 
 {% block content %}
@@ -22,7 +22,7 @@
             font-size: 15px;
             font-family: "Microsoft yahei";
             margin-bottom: 5px;
-            height: 28px;
+            height: 25px;
             width: 280px;
             background-color: #b1d5eb;
         }
@@ -45,24 +45,22 @@
 
     <div class="thesis">
         <br/>
-        <h3>论文发表-请按要求填写下列表单完成提交 </h3>
+        <h3>获批专利-请按要求填写下列表单完成提交 </h3>
         <br/>
-        <form action="{{ url_for('main.user_thesis') }}" method="post" enctype="multipart/form-data">
+        <form action="{{ url_for('main.user_patent') }}" method="post" enctype="multipart/form-data">
             <p>所在学院：<input type="text" title="stu_academy" name="stu_academy" placeholder="请输入所在学院"></p>
-            <p>参赛学生姓名:<input type="text" title="stu_name" name="stu_name" placeholder="请输入参赛学生姓名"></p>
-            <p>学生电话:<input type="text" title="stu_phone_number" name="stu_phone_number" placeholder="请输入学生电话"></p>
-            <p>学生学号:<input type="text" title="stu_number" name="stu_number" placeholder="请输入学生学号"></p>
-            <p>学生QQ:<input type="text" title="stu_qq" name="stu_qq" placeholder="请输入学生QQ"></p>
-            <p>专业班级:<input type="text" title="stu_class" name="stu_class" placeholder="请输入专业班级"></p>
-            <p>刊物名称:<input type="text" title="publication_name" name="publication_name" placeholder="请输入刊物名称"></p>
-            <p>论文名称:<input type="text" title="thesis_name" name="thesis_name" placeholder="请输入论文名称"></p>
-            <p>档次:<input type="text" title="dangci" name="dangci" placeholder="请输入档次"></p>
+            <p>专利名称:<input type="text" title="patent_name" name="patent_name" placeholder="请输入专利名称"></p>
+            <p>专利类别:<input type="text" title="patent_categorg" name="patent_categorg" placeholder="请输入专利类别"></p>
+            <p>专利权人:<input type="text" title="patentee" name="patentee" placeholder="请输入专利权人"></p>
+            <p>发明人:<input type="text" title="inventor" name="inventor" placeholder="请输入发明人"></p>
             <p>位次:<input type="text" title="weici" name="weici" placeholder="请输入位次"></p>
-            <p>刊号:<input type="text" title="publication_number" name="publication_number" placeholder="请输入刊号"></p>
-            <p>
-                发表日期:<input type="text" title="publication_number"
-                            name="publication_number" placeholder="请输入发表日期" id="datepicker">
-            </p>
+            <p>发明人电话:<input type="text" title="inventor_phone" name="inventor_phone" placeholder="请输入发明人电话"></p>
+            <p>发明人QQ:<input type="text" title="inventor_qq" name="inventor_qq" placeholder="请输入发明人QQ"></p>
+            <p>专业班级:<input type="text" title="inventor_class" name="inventor_class" placeholder="请输入专业班级"></p>
+            <p>专利号:<input type="text" title="patent_number" name="patent_number" placeholder="请输入专利号"></p>
+            <p>证书号:<input type="text" title="certificate_number" name="certificate_number" placeholder="请输入证书号"></p>
+            <p>专利申请日:<input type="text" title="date1" name="date1" placeholder="请输入专利申请日" class="datepicker"></p>
+            <p>授权公告日:<input type="text" title="date2" name="date2" placeholder="请输入授权公告日" class="datepicker"></p>
             <p>
                 附件上传:(支持格式：jpg, png；最大支持2M)
                 <input type="file" name="picture" title="picture" accept="image/jpeg,image/png">
@@ -81,7 +79,7 @@
     <script src="{{ url_for('static', filename='js/jquery.js') }}"></script>
     <script src="{{ url_for('static',filename='js/jquery-ui.min.js') }}"></script>
     <script type="text/javascript">
-        $("#datepicker").datepicker({
+        $(".datepicker").datepicker({
             changeDay: true,
             changeMonth: true,
             changeYear: true

@@ -5,9 +5,116 @@
 {% endblock %}
 
 {% block content %}
+    {#    <link rel="stylesheet" href="//apps.bdimg.com/libs/jqueryui/1.10.4/css/jquery-ui.min.css">#}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/jquery-ui.min.css') }}">
+    <style>
+        div.thesis {
+            margin: auto;
+            width: 600px;
+            height: 600px;
+        }
 
-    <div class="competition">
-        <h1>My competition</h1>
+        form {
+            width: 450px;
+        }
+
+        form input {
+            font-size: 15px;
+            font-family: "Microsoft yahei";
+            margin-bottom: 3px;
+            height: 22px;
+            width: 280px;
+            background-color: #b1d5eb;
+        }
+
+        form textarea {
+            font-size: 15px;
+            font-family: "Microsoft yahei";
+            margin-bottom: 3px;
+            background-color: #b1d5eb;
+        }
+
+        input[type='submit'], input[type='reset'] {
+            display: inline-block;
+            margin-right: 30px;
+            width: 100px;
+        }
+
+        div.button {
+            float: right;
+        }
+
+        p {
+            width: 100%;
+            text-align: right;
+        }
+    </style>
+
+    <div class="thesis">
+        <h3>项目立项-请按要求填写下列表单完成提交 </h3>
+        <form action="{{ url_for('main.user_create_project') }}" method="post" enctype="multipart/form-data">
+            <p>所在学院：<input type="text" name="stu_academy" placeholder="请输入所在学院"></p>
+            <p>项目编号:<input type="text" name="c_project_number" placeholder="请输入项目编号"></p>
+            <p>项目名称:<input type="text" name="c_project_name" placeholder="请输入项目名称"></p>
+            <p>项目类型:<input type="text" name="c_project_category" placeholder="请输入项目类型"></p>
+            <p>项目级别:<input type="text" name="c_project_level" placeholder="请输入项目级别"></p>
+            <p>立项年份:<input type="text" name="c_year" placeholder="请输入立项年份"></p>
+            <p>项目负责人姓名:<input type="text" name="c_stu_name" placeholder="请输入项目负责人姓名"></p>
+            <p>负责人学号:<input type="text" name="c_stu_number" placeholder="请输入负责人学号"></p>
+            <p>负责人电话:<input type="text" name="c_stu_phone" placeholder="请输入负责人电话"></p>
+            <p>负责人QQ:<input type="text" name="c_stu_qq" placeholder="请输入负责人QQ"></p>
+            <p>专业班级:<input type="text" name="c_stu_class" placeholder="请输入专业班级"></p>
+            <p>参与学生人数:<input type="text" name="c_stu_count" placeholder="请输入参与学生人数"></p>
+            <p>其他成员信息:<input type="text" name="c_other_stu" placeholder="请输入其他成员信息"></p>
+            <p>指导老师姓名:<input type="text" name="c_teacher_name" placeholder="请输入指导老师姓名"></p>
+            <p>指导老师职称:<input type="text" name="c_teacher_title" placeholder="请输入指导老师职称"></p>
+            <p>项目所属一级学科:<input type="text" name="c_of_class" placeholder="请输入项目所属一级学科"></p>
+            <p>项目简介:<textarea  name="c_abstract" placeholder="请输入项目简介" rows="3" cols="33"></textarea></p>
+            <p>
+                附件上传:(支持格式：jpg, png；最大支持2M)
+                <input type="file" name="picture" title="picture" accept="image/jpeg,image/png">
+            </p>
+            <div class="button">
+                <input type="submit" value="提交" id="submit">
+                <input type="reset" value="重置">
+            </div>
+        </form>
+
+
     </div>
+
+
+    <script src="{{ url_for('static', filename='js/jquery.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/jquery-ui.min.js') }}"></script>
+    <script type="text/javascript">
+        $("#datepicker").datepicker({
+            changeDay: true,
+            changeMonth: true,
+            changeYear: true
+        });
+        $('#submit').click(
+                function () {
+                    var values = $("input[type='text']");
+                    var files = $("input[type='file']");
+                    var textarea_value = $("textarea");
+                    if (!textarea_value.val()) {
+                        alert('表单项请认真写全');
+                        return false;
+                    }
+                    if (!files.val()) {
+                        alert('附件项请认真写全');
+                        return false;
+                    }
+
+                    for (var i in values) {
+                        if (values[i].value == '') {
+                            alert('表单项请认真写全');
+                            return false;
+                        }
+                    }
+                    return confirm("提交后不能更改，确认是否提交？");
+                }
+        );
+    </script>
 
 {% endblock %}

@@ -6,10 +6,10 @@ from app import db
 from app.main import main
 from app.decorators import user_required
 from app.create_random_str import get_random_str
-from app.models import Project, Competition, User
+from app.models import Project, Competition, User, Theses, Patent
 
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg'])
-SAVE_PATH = 'app/picture'
+SAVE_PATH = 'app/picture_data'
 
 
 def allowed_file(filename):
@@ -78,11 +78,15 @@ def user_change_password():
 
 
 @main.route('/user/submit_history')
+@login_required
+@user_required
 def user_submit_history():
     return render_template("user/submit_history.html")
 
 
 @main.route('/user/competition', methods=['GET', 'POST'])
+@login_required
+@user_required
 def user_competition():
     """
     进行比赛项目的提交
@@ -114,8 +118,8 @@ def user_competition():
         try:
             # 获取文件扩展名并重命名，最后保存文件
             print('file.filename   ', file.filename)
-            filename_extension = secure_filename(file.filename).rsplit('.', 1)[0]
-            print(filename_extension)
+            filename_extension = secure_filename(file.filename).split('.')[-1]
+            print('上传文件后缀名 --:\n', filename_extension)
             filename = '%s.%s' % (get_random_str(), filename_extension)
             file.save(
                 os.path.join(SAVE_PATH, filename)
@@ -136,7 +140,7 @@ def user_competition():
                 prize_date=request.form['prize_date'],
                 award_department=request.form['award_department'],
                 sponsor=request.form['sponsor'],
-                comment=filename
+                filename=filename
             )
             # 打印数据用以测试
             '''print(
@@ -167,21 +171,137 @@ def user_competition():
             return redirect(request.referrer)
 
 
-@main.route('/user/thesis')
+@main.route('/user/thesis', methods=['GET', 'POST'])
+@login_required
+@user_required
 def user_thesis():
-    return render_template("user/thesis.html")
+    """
+       进行论文的提交
+       :return:
+       """
+    if request.method == 'GET':
+        return render_template("user/thesis.html")
+    else:
+        # post请求接收表单
+        try:
+            # 尝试获取文件
+            file = request.files['picture']
+        except Exception as e:
+            print(e)
+            return '未知错误'
+        if not allowed_file(file.filename):
+            flash('不符合文件类型')
+            # 返回提交前的url
+            return redirect(request.referrer)
+        try:
+            # 获取文件扩展名并重命名，最后保存文件
+            print('file.filename   ', file.filename)
+            filename_extension = secure_filename(file.filename).split('.')[-1]
+            filename = '%s.%s' % (get_random_str(), filename_extension)
+            print('file.filename   ', filename)
+            file.save(
+                os.path.join(SAVE_PATH, filename)
+            )
+
+            # 创建某个数据库模型的实例
+            theses = Theses(
+                stu_academy=request.form['stu_academy'],
+                stu_name=request.form['stu_name'],
+                stu_phone_number=request.form['stu_phone_number'],
+                stu_number=request.form['stu_number'],
+                stu_qq=request.form['stu_qq'],
+                stu_class=request.form['stu_class'],
+                publication_name=request.form['publication_name'],
+                thesis_name=request.form['thesis_name'],
+                dangci=request.form['dangci'],
+                weici=request.form['weici'],
+                publication_number=request.form['publication_number'],
+                filename=filename
+            )
+            print('test')
+            # competition = Competition()
+            db.session.add(theses)
+            db.session.commit()
+            flash('论文发表提交成功')
+            return redirect(url_for('main.user_submit_history'))
+        except Exception as e:
+            db.session.rollback()
+            print(e)
+            flash("发生了未知错误已经将页面跳转")
+            return redirect(request.referrer)
 
 
-@main.route('/user/create_project')
+@main.route('/user/patent', methods=['GET', 'POST'])
+@login_required
+@user_required
+def user_patent():
+    if request.method == 'GET':
+        return render_template('user/patent.html')
+    else:
+        # post请求接收表单
+        try:
+            # 尝试获取文件
+            file = request.files['picture']
+        except Exception as e:
+            print(e)
+            return '未知错误'
+        if not allowed_file(file.filename):
+            flash('不符合文件类型')
+            # 返回提交前的url
+            return redirect(request.referrer)
+
+        try:
+            # 获取文件扩展名并重命名，最后保存文件
+            print('file.filename   ', file.filename)
+            filename_extension = secure_filename(file.filename).split('.')[-1]
+            filename = '%s.%s' % (get_random_str(), filename_extension)
+            file.save(
+                os.path.join(SAVE_PATH, filename)
+            )
+            # 创建某个数据库模型的实例
+            patent = Patent(
+                stu_academy=request.form['stu_academy'],
+                patent_name=request.form['patent_name'],
+                patent_categorg=request.form['patent_categorg'],
+                patentee=request.form['patentee'],
+                inventor=request.form['inventor'],
+                weici=request.form['weici'],
+                inventor_phone=request.form['inventor_phone'],
+                inventor_qq=request.form['inventor_qq'],
+                inventor_class=request.form['inventor_class'],
+                patent_number=request.form['patent_number'],
+                certificate_number=request.form['certificate_number'],
+                date1=request.form['date1'],
+                date2=request.form['date2'],
+                filename=filename
+            )
+            db.session.add(patent)
+            db.session.commit()
+            flash('获批专利提交成功')
+            return redirect(url_for('main.user_submit_history'))
+        except Exception as e:
+            db.session.rollback()
+            print(e)
+            flash("发生了未知错误已经将页面跳转")
+            return redirect(request.referrer)
+
+
+@main.route('/user/create_project', methods=['GET', 'POST'])
+@login_required
+@user_required
 def user_create_project():
     return render_template("user/create_project.html")
 
 
-@main.route('/user/company')
+@main.route('/user/company', methods=['GET', 'POST'])
+@login_required
+@user_required
 def user_company():
     return render_template("user/company.html")
 
 
-@main.route('/user/other')
+@main.route('/user/other', methods=['GET', 'POST'])
+@login_required
+@user_required
 def user_other():
     return render_template("user/other.html")

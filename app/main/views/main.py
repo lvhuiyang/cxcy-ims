@@ -1,7 +1,7 @@
-from app.main import main
-from app.models import User
-from flask import render_template, redirect, url_for, request, flash
+from flask import render_template, redirect, url_for, request, flash, abort
 from flask_login import login_required, current_user, login_user, logout_user
+from app.main import main
+from app.models import User, Competition
 
 
 @main.route('/test')
@@ -43,3 +43,15 @@ def login():
 def logout():
     logout_user()
     return redirect(url_for('main.index'))
+
+
+@main.route('/picture_data')
+@login_required
+def picture_data():
+    picture_id = request.args.get('picture_id')
+    picture_id = '14800601146905'
+    # pic_obj = Competition.query.filter_by(comment=picture_id).first()
+    if picture_id:
+        return 1
+    else:
+        abort(404)

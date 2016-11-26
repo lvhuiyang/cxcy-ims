@@ -6,8 +6,105 @@
 
 {% block content %}
 
-    <div class="competition">
-        <h1>My competition</h1>
+    {#    <link rel="stylesheet" href="//apps.bdimg.com/libs/jqueryui/1.10.4/css/jquery-ui.min.css">#}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/jquery-ui.min.css') }}">
+    <style>
+        div.thesis {
+            margin: auto;
+            width: 600px;
+            height: 600px;
+        }
+
+        form {
+            width: 450px;
+        }
+
+        form input, select {
+            font-size: 15px;
+            font-family: "Microsoft yahei";
+            margin-bottom: 5px;
+            height: 28px;
+            width: 280px;
+            background-color: #b1d5eb;
+        }
+
+        input[type='submit'], input[type='reset'] {
+            display: inline-block;
+            margin-right: 30px;
+            width: 100px;
+        }
+
+        div.button {
+            float: right;
+        }
+
+        p {
+            width: 100%;
+            text-align: right;
+        }
+    </style>
+
+    <div class="thesis">
+        <br/>
+        <h3>论文发表-请按要求填写下列表单完成提交 </h3>
+        <br/>
+        <form action="{{ url_for('main.user_thesis') }}" method="post" enctype="multipart/form-data">
+            <p>所在学院：<input type="text" title="stu_academy" name="stu_academy" placeholder="请输入所在学院"></p>
+            <p>参赛学生姓名:<input type="text" title="stu_name" name="stu_name" placeholder="请输入参赛学生姓名"></p>
+            <p>学生电话:<input type="text" title="stu_phone_number" name="stu_phone_number" placeholder="请输入学生电话"></p>
+            <p>学生学号:<input type="text" title="stu_number" name="stu_number" placeholder="请输入学生学号"></p>
+            <p>学生QQ:<input type="text" title="stu_qq" name="stu_qq" placeholder="请输入学生QQ"></p>
+            <p>专业班级:<input type="text" title="stu_class" name="stu_class" placeholder="请输入专业班级"></p>
+            <p>刊物名称:<input type="text" title="publication_name" name="publication_name" placeholder="请输入刊物名称"></p>
+            <p>论文名称:<input type="text" title="thesis_name" name="thesis_name" placeholder="请输入论文名称"></p>
+            <p>档次:<input type="text" title="dangci" name="dangci" placeholder="请输入档次"></p>
+            <p>位次:<input type="text" title="weici" name="weici" placeholder="请输入位次"></p>
+            <p>刊号:<input type="text" title="publication_number" name="publication_number" placeholder="请输入刊号"></p>
+            <p>
+                发表日期:<input type="text" title="publication_number"
+                            name="publication_number" placeholder="请输入发表日期" id="datepicker">
+            </p>
+            <p>
+                附件上传:(支持格式：jpg, png；最大支持2M)
+                <input type="file" name="picture" title="picture" accept="image/jpeg,image/png">
+            </p>
+            <br/>
+            <div class="button">
+                <input type="submit" value="提交" id="submit">
+                <input type="reset" value="重置">
+            </div>
+        </form>
+
+
     </div>
+
+
+    <script src="{{ url_for('static', filename='js/jquery.js') }}"></script>
+    <script src="{{ url_for('static',filename='js/jquery-ui.min.js') }}"></script>
+    <script type="text/javascript">
+        $("#datepicker").datepicker({
+            changeDay: true,
+            changeMonth: true,
+            changeYear: true
+        });
+        $('#submit').click(
+                function () {
+                    var values = $("input[type='text']");
+                    var files = $("input[type='file']");
+                    if (!files.val()) {
+                        alert('附件项请认真写全');
+                        return false;
+                    }
+
+                    for (var i in values) {
+                        if (values[i].value == '') {
+                            alert('表单项请认真写全');
+                            return false;
+                        }
+                    }
+                    return confirm("提交后不能更改，确认是否提交？");
+                }
+        );
+    </script>
 
 {% endblock %}

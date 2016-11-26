@@ -18,4 +18,3 @@ class Theses(db.Model):
     weici = db.Column(db.String(64))  # 位次
     publication_number = db.Column(db.String(64))  # 刊号
     filename = db.Column(db.String(64))  # 附件名
-    comment = db.Column(db.String(64))  # 备注
