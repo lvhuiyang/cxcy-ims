@@ -22,7 +22,7 @@
         form input, select {
             font-size: 15px;
             font-family: "Microsoft yahei";
-            margin-bottom: 5px;
+            margin-bottom: 8px;
             height: 28px;
             width: 280px;
             background-color: #b1d5eb;
@@ -46,24 +46,38 @@
 
     <div class="thesis">
         <br/>
-        <h3>论文发表-请按要求填写下列表单完成提交 </h3>
+        <h3>其他成果-请按要求填写下列表单完成提交 </h3>
         <br/>
-        <form action="{{ url_for('main.user_thesis') }}" method="post" enctype="multipart/form-data">
-            <p>所在学院：<input type="text" title="stu_academy" name="stu_academy" placeholder="请输入所在学院"></p>
-            <p>参赛学生姓名:<input type="text" title="stu_name" name="stu_name" placeholder="请输入参赛学生姓名"></p>
-            <p>学生电话:<input type="text" title="stu_phone_number" name="stu_phone_number" placeholder="请输入学生电话"></p>
-            <p>学生学号:<input type="text" title="stu_number" name="stu_number" placeholder="请输入学生学号"></p>
-            <p>学生QQ:<input type="text" title="stu_qq" name="stu_qq" placeholder="请输入学生QQ"></p>
-            <p>专业班级:<input type="text" title="stu_class" name="stu_class" placeholder="请输入专业班级"></p>
-            <p>刊物名称:<input type="text" title="publication_name" name="publication_name" placeholder="请输入刊物名称"></p>
-            <p>论文名称:<input type="text" title="thesis_name" name="thesis_name" placeholder="请输入论文名称"></p>
-            <p>档次:<input type="text" title="dangci" name="dangci" placeholder="请输入档次"></p>
-            <p>位次:<input type="text" title="weici" name="weici" placeholder="请输入位次"></p>
-            <p>刊号:<input type="text" title="publication_number" name="publication_number" placeholder="请输入刊号"></p>
-            <p>
-                发表日期:<input type="text" title="publication_number"
-                            name="publication_number" placeholder="请输入发表日期" id="datepicker">
+        <form action="{{ url_for('main.user_other') }}" method="post" enctype="multipart/form-data">
+            <p>所在学院：<input type="text" name="stu_academy" placeholder="请输入所在学院"></p>
+            <p>获奖名称:<input type="text" name="prize_name" placeholder="请输入参赛学生姓名"></p>
+            <p>获奖类型：
+                <select title="prize_category" name="prize_category">
+                    <option value="国际级">国际级</option>
+                    <option value="赛区级">赛区级</option>
+                    <option value="国家级">国家级</option>
+                    <option value="省级">省级</option>
+                </select>
             </p>
+            <p>获奖级别:
+                <select title="prize_level" name="prize_level">
+                    <option value="金牌">金牌</option>
+                    <option value="银牌">银牌</option>
+                    <option value="铜牌">铜牌</option>
+                    <option value="特等奖">特等奖</option>
+                    <option value="一等奖">一等奖</option>
+                    <option value="二等奖">二等奖</option>
+                    <option value="三等奖">三等奖</option>
+                    <option value="优秀奖">优秀奖</option>
+                </select>
+            </p>
+            <p>获奖个人/集体:<input type="text" name="prize_personage_collective" placeholder="请输入获奖个人姓名/集体名称"></p>
+            <p>主要负责人学号:<input type="text" name="head_number" placeholder="请输入主要负责人学号"></p>
+            <p>主要负责人电话:<input type="text" title="head_phone" name="head_phone" placeholder="请输入主要负责人电话"></p>
+            <p>主要负责人QQ:<input type="text" name="head_qq" placeholder="请输入主要负责人QQ"></p>
+            <p>专业班级:<input type="text" name="head_class" placeholder="请输入专业班级"></p>
+            <p>获奖时间:<input type="text" name="prize_date" placeholder="请输入获奖时间" id="datepicker"></p>
+            <p>颁奖单位:<input type="text" name="award_department" placeholder="请输入颁奖单位"></p>
             <p>
                 附件上传:(支持格式：jpg, png；最大支持2M)
                 <input type="file" name="picture" title="picture" accept="image/jpeg,image/png">

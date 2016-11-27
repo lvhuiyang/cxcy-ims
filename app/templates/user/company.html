@@ -23,7 +23,7 @@
             font-size: 15px;
             font-family: "Microsoft yahei";
             margin-bottom: 5px;
-            height: 28px;
+            height: 24px;
             width: 280px;
             background-color: #b1d5eb;
         }
@@ -46,24 +46,22 @@
 
     <div class="thesis">
         <br/>
-        <h3>论文发表-请按要求填写下列表单完成提交 </h3>
+        <h3>公司注册-请按要求填写下列表单完成提交 </h3>
         <br/>
-        <form action="{{ url_for('main.user_thesis') }}" method="post" enctype="multipart/form-data">
-            <p>所在学院：<input type="text" title="stu_academy" name="stu_academy" placeholder="请输入所在学院"></p>
-            <p>参赛学生姓名:<input type="text" title="stu_name" name="stu_name" placeholder="请输入参赛学生姓名"></p>
-            <p>学生电话:<input type="text" title="stu_phone_number" name="stu_phone_number" placeholder="请输入学生电话"></p>
-            <p>学生学号:<input type="text" title="stu_number" name="stu_number" placeholder="请输入学生学号"></p>
-            <p>学生QQ:<input type="text" title="stu_qq" name="stu_qq" placeholder="请输入学生QQ"></p>
-            <p>专业班级:<input type="text" title="stu_class" name="stu_class" placeholder="请输入专业班级"></p>
-            <p>刊物名称:<input type="text" title="publication_name" name="publication_name" placeholder="请输入刊物名称"></p>
-            <p>论文名称:<input type="text" title="thesis_name" name="thesis_name" placeholder="请输入论文名称"></p>
-            <p>档次:<input type="text" title="dangci" name="dangci" placeholder="请输入档次"></p>
-            <p>位次:<input type="text" title="weici" name="weici" placeholder="请输入位次"></p>
-            <p>刊号:<input type="text" title="publication_number" name="publication_number" placeholder="请输入刊号"></p>
-            <p>
-                发表日期:<input type="text" title="publication_number"
-                            name="publication_number" placeholder="请输入发表日期" id="datepicker">
-            </p>
+        <form action="{{ url_for('main.user_company') }}" method="post" enctype="multipart/form-data">
+            <p>所在学院：<input type="text" name="academy" placeholder="请输入所在学院"></p>
+            <p>公司名称:<input type="text" name="company_name" placeholder="请输入公司名称"></p>
+            <p>公司类型:<input type="text" name="company_category" placeholder="请输入公司类型"></p>
+            <p>法人代表学生姓名:<input type="text" name="legal_person_name" placeholder="请输入法人代表学生姓名"></p>
+            <p>法人代表学号:<input type="text" name="legal_person_number" placeholder="请输入法人代表学号"></p>
+            <p>法人代表电话:<input type="text" name="legal_person_phone_number" placeholder="请输入法人代表电话"></p>
+            <p>法人代表qq:<input type="text" name="legal_person_qq" placeholder="请输入法人代表qq"></p>
+            <p>专业班级:<input type="text" name="legal_person_class" placeholder="请输入专业班级"></p>
+            <p>公司注册地址:<input type="text" name="register_addr" placeholder="请输入公司注册地址"></p>
+            <p>公司注册资本:<input type="text" name="register_capital" placeholder="请输入公司注册资本"></p>
+            <p>公司注册时间:<input type="text" name="register_date" placeholder="请输入公司注册时间" id="datepicker"></p>
+            <p>公司经营范围:<input type="text" name="scope" placeholder="请输入公司经营范围"></p>
+            <p>统一社会信用代码:<input type="text" name="credit_code" placeholder="请输入统一社会信用代码"></p>
             <p>
                 附件上传:(支持格式：jpg, png；最大支持2M)
                 <input type="file" name="picture" title="picture" accept="image/jpeg,image/png">
