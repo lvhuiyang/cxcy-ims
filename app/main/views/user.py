@@ -1,12 +1,13 @@
 import os
 from flask import render_template, request, flash, redirect, url_for
-from flask_login import login_required
+from flask_login import login_required, current_user
 from werkzeug.utils import secure_filename
 from app import db
 from app.main import main
 from app.decorators import user_required
 from app.create_random_str import get_random_str
-from app.models import Project, Competition, User, Theses, Patent, Company, CreateProject, Other
+from app.models import Project, Competition, \
+    User, Theses, Patent, Company, CreateProject, Other, SubmitHistory
 
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg'])
 SAVE_PATH = 'app/picture_data'
@@ -161,6 +162,13 @@ def user_competition():
             )'''
             # competition = Competition()
             db.session.add(competition)
+            history = SubmitHistory(
+                user_id=current_user.id,
+                username=current_user.username,
+                submit_content='提交竞赛项目',
+                filename=filename
+            )
+            db.session.add(history)
             db.session.commit()
             flash('竞赛获奖提交成功')
             return redirect(url_for('main.user_submit_history'))

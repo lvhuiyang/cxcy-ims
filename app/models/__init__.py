@@ -6,3 +6,4 @@ from .other import *  # 导入其他成果信息表
 from .patent import *  # 导入专利信息表
 from .theses import *  # 导入论文信息表
 from .user import *  # 导入用户表
+from .submit_history import *
