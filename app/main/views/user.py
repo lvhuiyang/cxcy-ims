@@ -1,4 +1,5 @@
 import os
+from datetime import datetime
 from flask import render_template, request, flash, redirect, url_for
 from flask_login import login_required, current_user
 from werkzeug.utils import secure_filename
@@ -10,7 +11,7 @@ from app.models import Project, Competition, \
     User, Theses, Patent, Company, CreateProject, Other, SubmitHistory
 
 ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg'])
-SAVE_PATH = 'app/picture_data'
+SAVE_PATH = 'app/static/picture_data'
 
 
 def allowed_file(filename):
@@ -55,7 +56,7 @@ def user_change_password():
         old_password = request.form['old_password']
         new_password = request.form['new_password']
         new_password_confirm = request.form['new_password_confirm']
-        print(username + '   ' + old_password + '  ' + new_password_confirm)
+        # print(username + '   ' + old_password + '  ' + new_password_confirm)
         try:
             this_user = User.query.filter_by(username=username).first()
             if (this_user.verify_password(old_password)):
@@ -82,7 +83,9 @@ def user_change_password():
 @login_required
 @user_required
 def user_submit_history():
-    return render_template("user/submit_history.html")
+    histories = SubmitHistory.query.order_by(SubmitHistory.id.desc()) \
+        .filter_by(user_id=current_user.id).all()
+    return render_template("user/submit_history.html", histories=histories)
 
 
 @main.route('/user/competition', methods=['GET', 'POST'])
@@ -165,7 +168,8 @@ def user_competition():
             history = SubmitHistory(
                 user_id=current_user.id,
                 username=current_user.username,
-                submit_content='提交竞赛项目',
+                submit_content='竞赛项目的提交',
+                submit_date=datetime.now(),
                 filename=filename
             )
             db.session.add(history)
@@ -229,6 +233,14 @@ def user_thesis():
             print('test')
             # competition = Competition()
             db.session.add(theses)
+            history = SubmitHistory(
+                user_id=current_user.id,
+                username=current_user.username,
+                submit_content='论文发表的提交',
+                submit_date=datetime.now(),
+                filename=filename
+            )
+            db.session.add(history)
             db.session.commit()
             flash('论文发表提交成功')
             return redirect(url_for('main.user_submit_history'))
@@ -284,6 +296,14 @@ def user_patent():
                 filename=filename
             )
             db.session.add(patent)
+            history = SubmitHistory(
+                user_id=current_user.id,
+                username=current_user.username,
+                submit_content='获批专利的提交',
+                submit_date=datetime.now(),
+                filename=filename
+            )
+            db.session.add(history)
             db.session.commit()
             flash('获批专利提交成功')
             return redirect(url_for('main.user_submit_history'))
@@ -342,6 +362,14 @@ def user_create_project():
                 filename=filename
             )
             db.session.add(c_project)
+            history = SubmitHistory(
+                user_id=current_user.id,
+                username=current_user.username,
+                submit_content='立项项目的提交',
+                submit_date=datetime.now(),
+                filename=filename
+            )
+            db.session.add(history)
             db.session.commit()
             flash('立项项目提交成功')
             return redirect(url_for('main.user_submit_history'))
@@ -410,6 +438,14 @@ def user_company():
                 filename=filename
             )
             db.session.add(company)
+            history = SubmitHistory(
+                user_id=current_user.id,
+                username=current_user.username,
+                submit_content='公司注册的提交',
+                submit_date=datetime.now(),
+                filename=filename
+            )
+            db.session.add(history)
             db.session.commit()
             flash('公司注册提交成功')
             return redirect(url_for('main.user_submit_history'))
@@ -462,8 +498,16 @@ def user_other():
                 filename=filename
             )
             db.session.add(other)
+            history = SubmitHistory(
+                user_id=current_user.id,
+                username=current_user.username,
+                submit_content='其他项目的提交',
+                submit_date=datetime.now(),
+                filename=filename
+            )
+            db.session.add(history)
             db.session.commit()
-            flash('获批专利提交成功')
+            flash('其他项目提交成功')
             return redirect(url_for('main.user_submit_history'))
         except Exception as e:
             db.session.rollback()

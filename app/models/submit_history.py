@@ -10,4 +10,5 @@ class SubmitHistory(db.Model):
     user_id = db.Column(db.String(64))  # 提交人id
     username = db.Column(db.String(64))  # 提交人用户名
     submit_content = db.Column(db.String(64))  # 提交的内容
+    submit_date = db.Column(db.DateTime)
     filename = db.Column(db.String(64))  # 附件名
