@@ -3,7 +3,7 @@ from flask import render_template, request, flash, redirect, url_for
 from flask_login import login_required, current_user
 from app import db
 from app.main import main
-from app.models import User, Project
+from app.models import User, Project, Company, Other
 from app.decorators import manager_required
 
 
@@ -87,6 +87,7 @@ def manager_project_list():
     return render_template('manager/project_list.html', projects=projects)
 
 
+# 重置密码操作
 @main.route('/manager/reset_password', methods=['POST'])
 @login_required
 @manager_required
@@ -101,3 +102,39 @@ def manager_reset_password():
         db.session.rollback()
         return 'ERROR'
     return 'OK'
+
+
+# 公司注册列表管理
+@main.route('/manager/company')
+@login_required
+@manager_required
+def manager_company():
+    companys = Company.query.all()
+    return render_template('manager/company_list.html', companys=companys)
+
+
+# 公司注册列表管理-详细列表
+@main.route('/manager/company_details')
+@login_required
+@manager_required
+def manager_company_details():
+    companys = Company.query.all()
+    return render_template('manager/company_list2.html', companys=companys)
+
+
+# 其他项目列表管理
+@main.route('/manager/other')
+@login_required
+@manager_required
+def manager_other():
+    others = Other.query.all()
+    return render_template('manager/other_list.html', others=others)
+
+
+# 其他项目列表管理-详细列表管理
+@main.route('/manager/other_details')
+@login_required
+@manager_required
+def manager_other_details():
+    others = Other.query.all()
+    return render_template('manager/other_list2.html', others=others)

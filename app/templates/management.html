@@ -24,31 +24,43 @@
                 <ul class="submenu">
                     <li><a href="{{ url_for('main.manager_add_new_project') }}" title="add_new_project">添加新项目</a></li>
                     <li><a href="{{ url_for('main.manager_project_list') }}" title="project_list">查看项目列表</a></li>
-                    <li><a href="#" title="competition_details">竞赛详情</a></li>
+                    <li><a href="#" title="competition_details">竞赛列表</a></li>
+                    <li><a href="{{ url_for('main.manager_other_details') }}" target="_blank">详细列表</a></li>
                 </ul>
             </li>
             <li>
                 <div class="link">论文管理</div>
                 <ul class="submenu">
                     <li><a href="#" title="thesis_list">论文列表</a></li>
+                    <li><a href="{{ url_for('main.manager_other_details') }}" target="_blank">详细列表</a></li>
+                </ul>
+            </li>
+            <li>
+                <div class="link">获批专利管理</div>
+                <ul class="submenu">
+                    <li><a href="#" title="thesis_list">获批专利</a></li>
+                    <li><a href="{{ url_for('main.manager_other_details') }}" target="_blank">详细列表</a></li>
                 </ul>
             </li>
             <li>
                 <div class="link">项目立项管理</div>
                 <ul class="submenu">
                     <li><a href="#" title="create_project_list">项目列表</a></li>
+                    <li><a href="{{ url_for('main.manager_other_details') }}" target="_blank">详细列表</a></li>
                 </ul>
             </li>
             <li>
                 <div class="link">公司注册管理</div>
                 <ul class="submenu">
-                    <li><a href="#" title="company_list">公司注册列表</a></li>
+                    <li><a href="{{ url_for('main.manager_company') }}">公司注册列表</a></li>
+                    <li><a href="{{ url_for('main.manager_company_details') }}" target="_blank">详细列表</a></li>
                 </ul>
             </li>
             <li>
                 <div class="link">其他成果管理</div>
                 <ul class="submenu">
-                    <li><a href="#" title="other_list">其他成果列表</a></li>
+                    <li><a href="{{ url_for('main.manager_other') }}">其他成果列表</a></li>
+                    <li><a href="{{ url_for('main.manager_other_details') }}" target="_blank">详细列表</a></li>
                 </ul>
             </li>
         </ul>

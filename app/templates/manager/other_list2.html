@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>其他项目管理-详细列表</title>
+    {% import 'link.html' as macros %}
+    {{ macros.css_link() }}
+    {{ macros.js_link() }}
+</head>
+<body>
+
+<div id="other_details">
+    <table id="other_details_table" class="display nowrap" cellspacing="0" width="100%" border="1">
+        <thead>
+        <tr>
+            <th>序号</th>
+            <th>学院</th>
+            <th>获奖名称</th>
+            <th>获奖类型</th>
+            <th>获奖级别</th>
+            <th>获奖个人/集体</th>
+            <th>主要负责人学号</th>
+            <th>主要负责人电话</th>
+            <th>主要负责人QQ</th>
+            <th>专业班级</th>
+            <th>奖励时间</th>
+            <th>颁奖单位</th>
+            <th>查看附件</th>
+        </tr>
+        </thead>
+
+        <tbody>
+
+        {% for other in others %}
+
+            <tr>
+                <td>{{ other.id }}</td>
+                <td>{{ other.stu_academy }}</td>
+                <td>{{ other.prize_name }}</td>
+                <td>{{ other.prize_category }}</td>
+                <td>{{ other.prize_level }}</td>
+                <td>{{ other.prize_personage_collective }}</td>
+                <td>{{ other.head_number }}</td>
+                <td>{{ other.head_phone }}</td>
+                <td>{{ other.head_qq }}</td>
+                <td>{{ other.head_class }}</td>
+                <td>{{ other.prize_date }}</td>
+                <td>{{ other.award_department }}</td>
+                {% set file='picture_data/' + other.filename %}
+                <td><a href="{{ url_for('static', filename=file) }}"
+                       target="_blank ">{{ other.filename }}</a></td>
+            </tr>
+
+        {% endfor %}
+
+        </tbody>
+    </table>
+</div>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#other_details_table').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                'copy', 'csv', 'excel', 'pdf', 'print'
+            ]
+        });
+    });
+</script>
+</body>
+</html>

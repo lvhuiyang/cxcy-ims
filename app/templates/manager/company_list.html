@@ -3,3 +3,55 @@
 {% block title %}
     注册公司列表
 {% endblock %}
+
+{% block content %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/jquery.dataTables.min.css') }}"
+          type="text/css">
+    <br/>
+    <h3>注册公司提交管理列表。注意：此表是简表，<a href="{{ url_for('main.manager_company_details') }}" target="_blank">点击前去查看详细表</a></h3>
+    <br/>
+
+    <div id="other_details">
+        <table id="other_details_table" class="display nowrap" cellspacing="0" width="100%" border="1">
+            <thead>
+            <tr>
+                <th>序号</th>
+                <th>公司名称</th>
+                <th>法人代表姓名</th>
+                <th>注册资本</th>
+                <th>成立时间</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            {% for company in companys %}
+
+                <tr>
+                    <td>{{ company.id }}</td>
+                    <td>{{ company.company_name }}</td>
+                    <td>{{ company.legal_person_name }}</td>
+                    <td>{{ company.register_capital }}</td>
+                    <td>{{ company.register_date }}</td>
+                </tr>
+
+            {% endfor %}
+
+            </tbody>
+        </table>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/jquery.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/jquery.dataTables.min.js') }}"></script>
+    <script>
+        $(document).ready(function () {
+            $('#other_details_table').DataTable({
+                "paging": true,
+                "ordering": true,
+                "info": true
+            });
+
+
+        });
+    </script>
+
+{% endblock %}

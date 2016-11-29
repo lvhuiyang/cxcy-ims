@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>公司注册管理-详细列表</title>
+    {% import 'link.html' as macros %}
+    {{ macros.css_link() }}
+    {{ macros.js_link() }}
+</head>
+<body>
+
+<div id="other_details">
+    <table id="other_details_table" class="display nowrap" cellspacing="0" width="100%" border="1">
+        <thead>
+        <tr>
+            <th>序号</th>
+            <th>学院</th>
+            <th>公司名称</th>
+            <th>公司类型</th>
+            <th>法人代表</th>
+            <th>法人代表学号</th>
+            <th>法人代表电话</th>
+            <th>法人代表QQ</th>
+            <th>专业班级</th>
+            <th>注册地址</th>
+            <th>注册资本</th>
+            <th>成立时间</th>
+            <th>经营范围</th>
+            <th>统一社会信用代码</th>
+            <th>查看附件</th>
+        </tr>
+        </thead>
+
+        <tbody>
+
+        {% for company in companys %}
+
+            <tr>
+                <td>{{ company.id }}</td>
+                <td>{{ company.academy }}</td>
+                <td>{{ company.company_name }}</td>
+                <td>{{ company.company_category }}</td>
+                <td>{{ company.legal_person_name }}</td>
+                <td>{{ company.legal_person_number }}</td>
+                <td>{{ company.legal_person_phone_number }}</td>
+                <td>{{ company.legal_person_qq }}</td>
+                <td>{{ company.legal_person_class }}</td>
+                <td>{{ company.register_addr }}</td>
+                <td>{{ company.register_capital }}</td>
+                <td>{{ company.register_date }}</td>
+                <td>{{ company.scope }}</td>
+                <td>{{ company.credit_code }}</td>
+                {% set file='picture_data/' + company.filename %}
+                <td><a href="{{ url_for('static', filename=file) }}"
+                       target="_blank ">{{ company.filename }}</a></td>
+            </tr>
+
+        {% endfor %}
+
+        </tbody>
+    </table>
+</div>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#other_details_table').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                'copy', 'csv', 'excel', 'pdf', 'print'
+            ]
+        });
+    });
+</script>
+</body>
+</html>

@@ -1,10 +1,57 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
+{% extends "management.html" %}
 
-</body>
-</html>
+{% block title %}
+    其他项目管理
+{% endblock %}
+
+{% block content %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/jquery.dataTables.min.css') }}"
+          type="text/css">
+    <br/>
+    <h3>其他项目提交管理列表。注意：此表是简表，<a href="{{ url_for('main.manager_other_details') }}" target="_blank">点击前去查看详细表</a></h3>
+    <br/>
+
+    <div id="other_details">
+        <table id="other_details_table" class="display nowrap" cellspacing="0" width="100%" border="1">
+            <thead>
+            <tr>
+                <th>序号</th>
+                <th>获奖名称</th>
+                <th>获奖级别</th>
+                <th>主要负责人电话</th>
+                <th>奖励时间</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            {% for other in others %}
+
+                <tr>
+                    <td>{{ other.id }}</td>
+                    <td>{{ other.prize_name }}</td>
+                    <td>{{ other.prize_level }}</td>
+                    <td>{{ other.head_phone }}</td>
+                    <td>{{ other.prize_date }}</td>
+                </tr>
+
+            {% endfor %}
+
+            </tbody>
+        </table>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/jquery.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/jquery.dataTables.min.js') }}"></script>
+    <script>
+        $(document).ready(function () {
+            $('#other_details_table').DataTable({
+                "paging": true,
+                "ordering": true,
+                "info": true
+            });
+
+
+        });
+    </script>
+
+{% endblock %}

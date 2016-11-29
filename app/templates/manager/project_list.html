@@ -62,19 +62,7 @@
             "info": false
         });
     });
-    function test() {
-        var radios = document.getElementsByName("project");
-        var flag = false;
-        for (var i = 0; i < radios.length; i++) {
-            if (radios[i].checked == true) {
-                flag = true;
-                window.location = '{{ url_for('main.user_competition') }}?project_id=' + radios[i].value;
 
-            }
-        }
-        if (flag == false)
-            alert("请先选择具体的参赛项目");
-    }
 </script>
 
 </body>
