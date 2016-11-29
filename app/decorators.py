@@ -9,7 +9,7 @@ def root_required(func):
         if current_user.power == 3:
             return func(*args, **kwargs)
         else:
-            flash("请请求的页面与您当前用户身份不符")
+            flash("您请求的页面与您当前用户身份不符")
             return redirect(url_for('main.index'))
 
     return wrapper
@@ -21,7 +21,7 @@ def manager_required(func):
         if current_user.power == 3:
             return func(*args, **kwargs)
         else:
-            flash("请请求的页面与您当前用户身份不符")
+            flash("您请求的页面与您当前用户身份不符")
             return redirect(url_for('main.index'))
 
     return wrapper
@@ -33,7 +33,7 @@ def user_required(func):
         if current_user.power == 1:
             return func(*args, **kwargs)
         else:
-            flash("请请求的页面与您当前用户身份不符")
+            flash("您请求的页面与您当前用户身份不符")
             return redirect(url_for('main.index'))
 
     return wrapper

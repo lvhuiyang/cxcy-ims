@@ -3,7 +3,7 @@ from flask import render_template, request, flash, redirect, url_for
 from flask_login import login_required, current_user
 from app import db
 from app.main import main
-from app.models import User, Project, Company, Other
+from app.models import User, Project, Company, Other, SubmitHistory
 from app.decorators import manager_required
 
 
@@ -138,3 +138,12 @@ def manager_other():
 def manager_other_details():
     others = Other.query.all()
     return render_template('manager/other_list2.html', others=others)
+
+
+# 用户提交历史查看
+@main.route('/manager/submit_history')
+@login_required
+@manager_required
+def manager_submit_history():
+    histories = SubmitHistory.query.order_by(SubmitHistory.id.desc()).all()
+    return render_template("manager/submit_history.html", histories=histories)

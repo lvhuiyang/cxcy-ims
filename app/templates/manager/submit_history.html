@@ -1,0 +1,57 @@
+{% extends "management.html" %}
+
+{% block title %}
+    用户提交历史记录
+{% endblock %}
+
+{% block content %}
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/jquery.dataTables.min.css') }}"
+          type="text/css">
+
+    <div id="submit_history">
+        <table id="submit_history_table" class="display nowrap" cellspacing="0" width="100%" border="1">
+            <thead>
+            <tr>
+                <th>序号</th>
+                <th>用户ID</th>
+                <th>用户名</th>
+                <th>提交内容记录</th>
+                <th>创建时间</th>
+                <th>查看附件</th>
+            </tr>
+            </thead>
+
+            <tbody>
+
+            {% for history in histories %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ history.user_id }}</td>
+                    <td>{{ history.username }}</td>
+                    <td>{{ history.submit_content }}</td>
+                    <td>{{ history.submit_date }}</td>
+                    {% set file='picture_data/' + history.filename %}
+                    <td><a href="{{ url_for('static', filename=file) }}"
+                           target="_blank ">{{ history.filename }}</a></td>
+                </tr>
+            {% endfor %}
+
+            </tbody>
+        </table>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/jquery.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/jquery.dataTables.min.js') }}"></script>
+    <script>
+        $(document).ready(function () {
+            $('#submit_history_table').DataTable({
+                "paging": true,
+                "ordering": true,
+                "info": true
+            });
+
+        });
+    </script>
+
+{% endblock %}
