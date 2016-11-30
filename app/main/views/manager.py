@@ -111,7 +111,7 @@ def manager_reset_password():
 @manager_required
 def manager_theses():
     theses = Theses.query.all()
-    return render_template('manager/patent.html', theses=theses)
+    return render_template('manager/thesis_list.html', theses=theses)
 
 
 # 发表论文列表管理-详细列表
@@ -120,7 +120,7 @@ def manager_theses():
 @manager_required
 def manager_theses_details():
     theses = Theses.query.all()
-    return render_template('manager/patent_details.html', theses=theses)
+    return render_template('manager/thesis_list_details.html', theses=theses)
 
 
 # 获批专利列表管理

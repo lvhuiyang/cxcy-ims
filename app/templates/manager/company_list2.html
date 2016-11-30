@@ -50,7 +50,7 @@
                 <td>{{ company.register_date }}</td>
                 <td>{{ company.scope }}</td>
                 <td>{{ company.credit_code }}</td>
-                {% set file='picture_data/' + company.filename %}
+                {% set file='picture_data/%s' %company.filename %}
                 <td><a href="{{ url_for('static', filename=file) }}"
                        target="_blank ">{{ company.filename }}</a></td>
             </tr>

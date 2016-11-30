@@ -52,7 +52,7 @@
                 <td>{{ patent.certificate_number }}</td>
                 <td>{{ patent.date1 }}</td>
                 <td>{{ patent.date2 }}</td>
-                {% set file='picture_data/' + patent.filename %}
+                {% set file='picture_data/%s' % patent.filename %}
                 <td><a href="{{ url_for('static', filename=file) }}"
                        target="_blank ">{{ patent.filename }}</a></td>
             </tr>

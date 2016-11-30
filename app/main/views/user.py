@@ -228,6 +228,7 @@ def user_thesis():
                 dangci=request.form['dangci'],
                 weici=request.form['weici'],
                 publication_number=request.form['publication_number'],
+                publication_date=request.form['publication_date'],
                 filename=filename
             )
             print('test')

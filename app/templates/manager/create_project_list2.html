@@ -58,7 +58,7 @@
                 <td>{{ create_project.c_teacher_title }}</td>
                 <td>{{ create_project.c_of_class }}</td>
                 <td>{{ create_project.c_abstract }}</td>
-                {% set file='picture_data/' + create_project.filename %}
+                {% set file='picture_data/%s' % create_project.filename %}
                 <td><a href="{{ url_for('static', filename=file) }}"
                        target="_blank ">{{ create_project.filename }}</a></td>
             </tr>

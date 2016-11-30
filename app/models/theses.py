@@ -17,4 +17,5 @@ class Theses(db.Model):
     dangci = db.Column(db.String(64))  # 档次
     weici = db.Column(db.String(64))  # 位次
     publication_number = db.Column(db.String(64))  # 刊号
+    publication_date = db.Column(db.String(64))  # 发表日期
     filename = db.Column(db.String(64))  # 附件名

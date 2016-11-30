@@ -46,7 +46,7 @@
                 <td>{{ other.head_class }}</td>
                 <td>{{ other.prize_date }}</td>
                 <td>{{ other.award_department }}</td>
-                {% set file='picture_data/' + other.filename %}
+                {% set file='picture_data/%s' % other.filename %}
                 <td><a href="{{ url_for('static', filename=file) }}"
                        target="_blank ">{{ other.filename }}</a></td>
             </tr>

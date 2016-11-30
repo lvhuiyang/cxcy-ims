@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>论文发表管理-详细列表</title>
+    {% import 'link.html' as macros %}
+    {{ macros.css_link() }}
+    {{ macros.js_link() }}
+</head>
+<body>
+
+<div id="other_details">
+    <table id="other_details_table" class="display nowrap" cellspacing="0" width="100%" border="1">
+        <thead>
+        <tr>
+            <th>序号</th>
+            <th>学院</th>
+            <th>学生姓名</th>
+            <th>学生电话</th>
+            <th>学生学号</th>
+            <th>学生qq</th>
+            <th>专业班级</th>
+            <th>刊物名称</th>
+            <th>论文名称</th>
+            <th>档次</th>
+            <th>位次</th>
+            <th>刊号</th>
+            <th>发表日期</th>
+            <th>查看附件</th>
+        </tr>
+        </thead>
+
+        <tbody>
+
+        {% for thesis in theses %}
+
+            <tr>
+                <td>{{ thesis.id }}</td>
+                <td>{{ thesis.stu_academy }}</td>
+                <td>{{ thesis.stu_name }}</td>
+                <td>{{ thesis.stu_phone_number }}</td>
+                <td>{{ thesis.stu_number }}</td>
+                <td>{{ thesis.stu_qq }}</td>
+                <td>{{ thesis.stu_class }}</td>
+                <td>{{ thesis.publication_name }}</td>
+                <td>{{ thesis.thesis_name }}</td>
+                <td>{{ thesis.dangci }}</td>
+                <td>{{ thesis.weici }}</td>
+                <td>{{ thesis.publication_number }}</td>
+                <td>{{ thesis.publication_date }}</td>
+                {% set file='picture_data/%s' % thesis.filename %}
+                <td><a href="{{ url_for('static', filename=file) }}"
+                       target="_blank ">{{ thesis.filename }}</a></td>
+            </tr>
+
+        {% endfor %}
+
+        </tbody>
+    </table>
+</div>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#other_details_table').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                'copy', 'csv', 'excel', 'pdf', 'print'
+            ]
+        });
+    });
+</script>
+</body>
+</html>
