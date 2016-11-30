@@ -287,6 +287,7 @@ def user_patent():
                 inventor=request.form['inventor'],
                 weici=request.form['weici'],
                 inventor_phone=request.form['inventor_phone'],
+                inventor_number=request.form['inventor_number'],
                 inventor_qq=request.form['inventor_qq'],
                 inventor_class=request.form['inventor_class'],
                 patent_number=request.form['patent_number'],

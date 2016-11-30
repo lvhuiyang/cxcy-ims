@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>公司注册管理-详细列表</title>
+    <title>获批专利管理-详细列表</title>
     {% import 'link.html' as macros %}
     {{ macros.css_link() }}
     {{ macros.js_link() }}
@@ -24,7 +24,6 @@
             <th>发明人学号</th>
             <th>发明人QQ</th>
             <th>专业班级</th>
-            <th>参与学生人数</th>
             <th>专利号</th>
             <th>证书号</th>
             <th>专利申请日</th>
@@ -35,30 +34,27 @@
 
         <tbody>
 
-        {% for create_project in create_projects %}
+        {% for patent in patents %}
 
             <tr>
-                <td>{{ create_project.id }}</td>
-                <td>{{ create_project.stu_academy }}</td>
-                <td>{{ create_project.c_project_number }}</td>
-                <td>{{ create_project.c_project_name }}</td>
-                <td>{{ create_project.c_project_category }}</td>
-                <td>{{ create_project.c_project_level }}</td>
-                <td>{{ create_project.c_year }}</td>
-                <td>{{ create_project.c_stu_name }}</td>
-                <td>{{ create_project.c_stu_number }}</td>
-                <td>{{ create_project.c_stu_phone }}</td>
-                <td>{{ create_project.c_stu_qq }}</td>
-                <td>{{ create_project.c_stu_class }}</td>
-                <td>{{ create_project.c_stu_count }}</td>
-                <td>{{ create_project.c_other_stu }}</td>
-                <td>{{ create_project.c_teacher_name }}</td>
-                <td>{{ create_project.c_teacher_title }}</td>
-                <td>{{ create_project.c_of_class }}</td>
-                <td>{{ create_project.c_abstract }}</td>
-                {% set file='picture_data/' + create_project.filename %}
+                <td>{{ patent.id }}</td>
+                <td>{{ patent.stu_academy }}</td>
+                <td>{{ patent.patent_name }}</td>
+                <td>{{ patent.patent_categorg }}</td>
+                <td>{{ patent.patentee }}</td>
+                <td>{{ patent.inventor }}</td>
+                <td>{{ patent.weici }}</td>
+                <td>{{ patent.inventor_phone }}</td>
+                <td>{{ patent.inventor_number }}</td>
+                <td>{{ patent.inventor_qq }}</td>
+                <td>{{ patent.inventor_class }}</td>
+                <td>{{ patent.patent_number }}</td>
+                <td>{{ patent.certificate_number }}</td>
+                <td>{{ patent.date1 }}</td>
+                <td>{{ patent.date2 }}</td>
+                {% set file='picture_data/' + patent.filename %}
                 <td><a href="{{ url_for('static', filename=file) }}"
-                       target="_blank ">{{ create_project.filename }}</a></td>
+                       target="_blank ">{{ patent.filename }}</a></td>
             </tr>
 
         {% endfor %}

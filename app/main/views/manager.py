@@ -3,7 +3,7 @@ from flask import render_template, request, flash, redirect, url_for
 from flask_login import login_required, current_user
 from app import db
 from app.main import main
-from app.models import User, Project, Patent, \
+from app.models import User, Project, Theses, Patent, \
     CreateProject, Company, Other, SubmitHistory
 from app.decorators import manager_required
 
@@ -103,6 +103,24 @@ def manager_reset_password():
         db.session.rollback()
         return 'ERROR'
     return 'OK'
+
+
+# 发表论文列表管理
+@main.route('/manager/theses')
+@login_required
+@manager_required
+def manager_theses():
+    theses = Theses.query.all()
+    return render_template('manager/patent.html', theses=theses)
+
+
+# 发表论文列表管理-详细列表
+@main.route('/manager/theses_details')
+@login_required
+@manager_required
+def manager_theses_details():
+    theses = Theses.query.all()
+    return render_template('manager/patent_details.html', theses=theses)
 
 
 # 获批专利列表管理

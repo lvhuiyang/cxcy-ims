@@ -8,12 +8,12 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/jquery.dataTables.min.css') }}"
           type="text/css">
     <br/>
-    <h3>获批专利提交管理列表。注意：此表是简表，<a href="{{ url_for('main.manager_create_project_details') }}" target="_blank">点击前去查看详细表</a>
+    <h3>获批专利提交管理列表。注意：此表是简表，<a href="{{ url_for('main.manager_patent_details') }}" target="_blank">点击前去查看详细表</a>
     </h3>
     <br/>
 
-    <div id="other_details">
-        <table id="other_details_table" class="display nowrap" cellspacing="0" width="100%" border="1">
+    <div id="patent_details">
+        <table id="patent_details_table" class="display nowrap" cellspacing="0" width="100%" border="1">
             <thead>
             <tr>
                 <th>序号</th>
@@ -25,14 +25,14 @@
             </thead>
 
             <tbody>
-            {% for create_project in create_projects %}
+            {% for patent in patents %}
 
                 <tr>
-                    <td>{{ create_project.id }}</td>
-                    <td>{{ create_project.c_project_name }}</td>
-                    <td>{{ create_project.c_year }}</td>
-                    <td>{{ create_project.c_stu_name }}</td>
-                    <td>{{ create_project.c_of_class }}</td>
+                    <td>{{ patent.id }}</td>
+                    <td>{{ patent.patent_name }}</td>
+                    <td>{{ patent.patent_categorg }}</td>
+                    <td>{{ patent.patentee }}</td>
+                    <td>{{ patent.inventor }}</td>
                 </tr>
 
             {% endfor %}
@@ -45,7 +45,7 @@
     <script src="{{ url_for('static', filename='js/jquery.dataTables.min.js') }}"></script>
     <script>
         $(document).ready(function () {
-            $('#other_details_table').DataTable({
+            $('#patent_details_table').DataTable({
                 "paging": true,
                 "ordering": true,
                 "info": true
