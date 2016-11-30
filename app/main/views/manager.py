@@ -3,7 +3,8 @@ from flask import render_template, request, flash, redirect, url_for
 from flask_login import login_required, current_user
 from app import db
 from app.main import main
-from app.models import User, Project, Company, Other, SubmitHistory
+from app.models import User, Project, Patent, \
+    CreateProject, Company, Other, SubmitHistory
 from app.decorators import manager_required
 
 
@@ -102,6 +103,42 @@ def manager_reset_password():
         db.session.rollback()
         return 'ERROR'
     return 'OK'
+
+
+# 获批专利列表管理
+@main.route('/manager/patent')
+@login_required
+@manager_required
+def manager_patent():
+    patents = Patent.query.all()
+    return render_template('manager/patent.html', patents=patents)
+
+
+# 获批专利列表管理-详细列表
+@main.route('/manager/patent_details')
+@login_required
+@manager_required
+def manager_patent_details():
+    patents = Patent.query.all()
+    return render_template('manager/patent_details.html', patents=patents)
+
+
+# 项目立项列表管理
+@main.route('/manager/create_project')
+@login_required
+@manager_required
+def manager_create_project():
+    create_projects = CreateProject.query.all()
+    return render_template('manager/create_project_list.html', create_projects=create_projects)
+
+
+# 项目立项列表管理-详细列表
+@main.route('/manager/create_project_details')
+@login_required
+@manager_required
+def manager_create_project_details():
+    create_projects = CreateProject.query.all()
+    return render_template('manager/create_project_list2.html', create_projects=create_projects)
 
 
 # 公司注册列表管理

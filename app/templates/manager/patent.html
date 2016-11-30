@@ -1,14 +1,15 @@
 {% extends "management.html" %}
 
 {% block title %}
-    项目立项列表
+    获批专利列表
 {% endblock %}
 
 {% block content %}
     <link rel="stylesheet" href="{{ url_for('static', filename='css/jquery.dataTables.min.css') }}"
           type="text/css">
     <br/>
-    <h3>注册公司提交管理列表。注意：此表是简表，<a href="{{ url_for('main.manager_create_project_details') }}" target="_blank">点击前去查看详细表</a></h3>
+    <h3>获批专利提交管理列表。注意：此表是简表，<a href="{{ url_for('main.manager_create_project_details') }}" target="_blank">点击前去查看详细表</a>
+    </h3>
     <br/>
 
     <div id="other_details">
@@ -16,10 +17,10 @@
             <thead>
             <tr>
                 <th>序号</th>
-                <th>项目名称</th>
-                <th>立项年份</th>
-                <th>项目负责人姓名</th>
-                <th>项目所属一级学科</th>
+                <th>专利名称</th>
+                <th>专利类别</th>
+                <th>专利权人</th>
+                <th>发明人</th>
             </tr>
             </thead>
 
