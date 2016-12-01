@@ -1,5 +1,58 @@
 {% extends "management.html" %}
 
 {% block title %}
-    竞赛列表
+    竞赛管理列表
+{% endblock %}
+
+{% block content %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/jquery.dataTables.min.css') }}"
+          type="text/css">
+    <br/>
+    <h3>竞赛管理提交管理列表。注意：此表是简表，<a href="{{ url_for('main.manager_patent_details') }}" target="_blank">点击前去查看详细表</a>
+    </h3>
+    <br/>
+
+    <div id="competitions_details">
+        <table id="competitions_details_table" class="display nowrap" cellspacing="0" width="100%" border="1">
+            <thead>
+            <tr>
+                <th>序号</th>
+                <th>竞赛项目</th>
+                <th>获奖名称</th>
+                <th>学生姓名</th>
+                <th>获奖时间</th>
+            </tr>
+            </thead>
+
+            <tbody>
+            {% for competition in competitions %}
+
+                <tr>
+                    <td>{{ competition.id }}</td>
+                    <td>{{ competition.patent_name }}</td>
+                    <td>{{ competition.patent_categorg }}</td>
+                    <td>{{ competition.patentee }}</td>
+                    <td>{{ competition.inventor }}</td>
+                </tr>
+
+            {% endfor %}
+
+            </tbody>
+        </table>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/jquery.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/jquery.dataTables.min.js') }}"></script>
+    <script>
+        $(document).ready(function () {
+            $('#competitions_details_table').DataTable({
+                "paging": true,
+                "ordering": true,
+                "info": true
+            });
+
+
+        });
+    </script>
+
 {% endblock %}

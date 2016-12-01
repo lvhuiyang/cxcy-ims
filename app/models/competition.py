@@ -23,7 +23,9 @@ class Competition(db.Model):
     """
     __tablename__ = 'competitions'  # 表名
     id = db.Column(db.Integer, primary_key=True)  # id 作为主键
-    project_id = db.Column(db.Integer())  # 项目名，外键连接到项目名id
+    stu_academy = db.Column(db.String(64))  # 所在学院
+    project_id = db.Column(db.Integer())  # 项目名id(暂时没有实现外键的链接)
+    project_name = db.Column(db.String(64))  # 项目名
     # project_id = db.Column(db.Integer(), db.ForeignKey('projects.id'))  # 项目名，外键连接到项目名id
     achievement_name = db.Column(db.String(64))  # 成果名称
     prize_category = db.Column(db.String(64))  # 获奖类型：国际级别，国家级别...

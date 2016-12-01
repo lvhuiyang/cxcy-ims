@@ -21,7 +21,7 @@
             font-size: 15px;
             font-family: "Microsoft yahei";
             margin-bottom: 3px;
-            height: 24px;
+            height: 23px;
             width: 280px;
             background-color: #b1d5eb;
         }
@@ -48,8 +48,9 @@
         <h3>竞赛项目：{{ this_project.name }}</h3>
         <br/>
         <form action="{{ url_for('main.user_competition') }}" method="post" enctype="multipart/form-data">
-            <p>竞赛项目(不可更改)：<input type="text" title="project_name" value="{{ this_project.name }}" readonly></p>
+            <p>竞赛项目(不可更改)：<input type="text" name="project_name" value="{{ this_project.name }}" readonly></p>
             <p><input type="hidden" name="project_id" value="{{ this_project.id }}"></p>
+            <p>竞所在学院：<input type="text" name="stu_academy" title="stu_academy"></p>
             <p>成果名称：<input type="text" title="achievement_name" name="achievement_name" placeholder="请输入成果名称"></p>
             <p>获奖级别：
                 <select title="prize_category" name="prize_category">

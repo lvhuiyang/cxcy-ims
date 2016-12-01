@@ -2,20 +2,77 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>竞赛管理管理-详细列表</title>
+    {% import 'link.html' as macros %}
+    {{ macros.css_link() }}
+    {{ macros.js_link() }}
 </head>
 <body>
-<!--在两个script中必须先定义后调用-->
-<script type="text/javascript">
-    demo();
-</script>
+
+<div id="competitions_details">
+    <table id="competitions_details_table" class="display nowrap" cellspacing="0" width="100%" border="1">
+        <thead>
+        <tr>
+            <th>序号</th>
+            <th>学院</th>
+            <th>专利名称</th>
+            <th>专利类别</th>
+            <th>专利权人</th>
+            <th>发明人</th>
+            <th>位次</th>
+            <th>发明人电话</th>
+            <th>发明人学号</th>
+            <th>发明人QQ</th>
+            <th>专业班级</th>
+            <th>专利号</th>
+            <th>证书号</th>
+            <th>专利申请日</th>
+            <th>授权公告日</th>
+            <th>查看附件</th>
+        </tr>
+        </thead>
+
+        <tbody>
+
+        {% for competition in competitions %}
+
+            <tr>
+                <td>{{ competition.id }}</td>
+                <td>{{ competition.stu_academy }}</td>
+                <td>{{ competition.patent_name }}</td>
+                <td>{{ competition.patent_categorg }}</td>
+                <td>{{ competition.patentee }}</td>
+                <td>{{ competition.inventor }}</td>
+                <td>{{ competition.weici }}</td>
+                <td>{{ competition.inventor_phone }}</td>
+                <td>{{ competition.inventor_number }}</td>
+                <td>{{ competition.inventor_qq }}</td>
+                <td>{{ competition.inventor_class }}</td>
+                <td>{{ competition.patent_number }}</td>
+                <td>{{ competition.certificate_number }}</td>
+                <td>{{ competition.date1 }}</td>
+                <td>{{ competition.date2 }}</td>
+                {% set file='picture_data/%s' % competition.filename %}
+                <td><a href="{{ url_for('static', filename=file) }}"
+                       target="_blank ">{{ competition.filename }}</a></td>
+            </tr>
+
+        {% endfor %}
+
+        </tbody>
+    </table>
+</div>
+
 
 <script type="text/javascript">
-    function demo() {
-        alert("HelloWorld");
-    }
+    $(document).ready(function () {
+        $('#competitions_details_table').DataTable({
+            dom: 'Bfrtip',
+            buttons: [
+                'copy', 'csv', 'excel', 'pdf', 'print'
+            ]
+        });
+    });
 </script>
-
-
 </body>
 </html>

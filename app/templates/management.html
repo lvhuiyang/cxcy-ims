@@ -23,8 +23,9 @@
                 <div class="link">竞赛管理</div>
                 <ul class="submenu">
                     <li><a href="{{ url_for('main.manager_add_new_project') }}" title="add_new_project">添加新项目</a></li>
-                    <li><a href="{{ url_for('main.manager_project_list') }}" title="project_list">查看项目列表</a></li>
-                    <li><a href="#" title="competition_details">竞赛列表</a></li>
+                    <li><a href="{{ url_for('main.manager_project_list') }}" title="project_list"
+                           target="_blank">查看项目列表</a></li>
+                    <li><a href="{{ url_for('main.manager_competition') }}" title="competition_details">竞赛列表</a></li>
                     <li><a href="{{ url_for('main.manager_other_details') }}" target="_blank">详细列表</a></li>
                 </ul>
             </li>
@@ -45,7 +46,7 @@
             <li>
                 <div class="link">项目立项管理</div>
                 <ul class="submenu">
-                    <li><a href="{{ url_for('main.manager_create_project') }}" >项目列表</a></li>
+                    <li><a href="{{ url_for('main.manager_create_project') }}">项目列表</a></li>
                     <li><a href="{{ url_for('main.manager_create_project_details') }}" target="_blank">详细列表</a></li>
                 </ul>
             </li>
@@ -80,7 +81,6 @@
                     padding-top: 20px;
                     width: 500px;
                     height: 500px;
-                {#                    background-color: #5cb85c;#}
                 }
 
                 div.p {

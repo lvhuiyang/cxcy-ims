@@ -131,6 +131,7 @@ def user_competition():
             # 创建某个数据库模型的实例
             competition = Competition(
                 project_id=request.form['project_id'],
+                project_name=request.form['project_name'],
                 achievement_name=request.form['achievement_name'],
                 prize_category=request.form['prize_category'],
                 prize_level=request.form['prize_level'],
