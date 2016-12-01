@@ -115,7 +115,7 @@ def manager_competition():
 
 
 # 竞赛管理列表-详细列表
-@main.route('/manager/competition')
+@main.route('/manager/competition_details')
 @login_required
 @manager_required
 def manager_comperirion_details():

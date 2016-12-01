@@ -15,19 +15,20 @@
         <tr>
             <th>序号</th>
             <th>学院</th>
-            <th>专利名称</th>
-            <th>专利类别</th>
-            <th>专利权人</th>
-            <th>发明人</th>
-            <th>位次</th>
-            <th>发明人电话</th>
-            <th>发明人学号</th>
-            <th>发明人QQ</th>
+            <th>竞赛项目</th>
+            <th>成果名称</th>
+            <th>获奖级别</th>
+            <th>获奖等级</th>
+            <th>竞赛学生姓名</th>
+            <th>学生电话</th>
+            <th>学生学号</th>
+            <th>学生QQ</th>
             <th>专业班级</th>
-            <th>专利号</th>
-            <th>证书号</th>
-            <th>专利申请日</th>
-            <th>授权公告日</th>
+            <th>指导老师姓名</th>
+            <th>指导老师职称</th>
+            <th>获奖时间</th>
+            <th>颁奖单位</th>
+            <th>主办方</th>
             <th>查看附件</th>
         </tr>
         </thead>
@@ -39,19 +40,20 @@
             <tr>
                 <td>{{ competition.id }}</td>
                 <td>{{ competition.stu_academy }}</td>
-                <td>{{ competition.patent_name }}</td>
-                <td>{{ competition.patent_categorg }}</td>
-                <td>{{ competition.patentee }}</td>
-                <td>{{ competition.inventor }}</td>
-                <td>{{ competition.weici }}</td>
-                <td>{{ competition.inventor_phone }}</td>
-                <td>{{ competition.inventor_number }}</td>
-                <td>{{ competition.inventor_qq }}</td>
-                <td>{{ competition.inventor_class }}</td>
-                <td>{{ competition.patent_number }}</td>
-                <td>{{ competition.certificate_number }}</td>
-                <td>{{ competition.date1 }}</td>
-                <td>{{ competition.date2 }}</td>
+                <td>{{ competition.project_name }}</td>
+                <td>{{ competition.achievement_name }}</td>
+                <td>{{ competition.prize_category }}</td>
+                <td>{{ competition.prize_level }}</td>
+                <td>{{ competition.stu_name }}</td>
+                <td>{{ competition.stu_phone_number }}</td>
+                <td>{{ competition.stu_number }}</td>
+                <td>{{ competition.stu_qq }}</td>
+                <td>{{ competition.stu_class }}</td>
+                <td>{{ competition.teacher_name }}</td>
+                <td>{{ competition.teacher_title }}</td>
+                <td>{{ competition.prize_date }}</td>
+                <td>{{ competition.award_department }}</td>
+                <td>{{ competition.sponsor }}</td>
                 {% set file='picture_data/%s' % competition.filename %}
                 <td><a href="{{ url_for('static', filename=file) }}"
                        target="_blank ">{{ competition.filename }}</a></td>

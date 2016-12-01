@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/jquery.dataTables.min.css') }}"
           type="text/css">
     <br/>
-    <h3>竞赛管理提交管理列表。注意：此表是简表，<a href="{{ url_for('main.manager_patent_details') }}" target="_blank">点击前去查看详细表</a>
+    <h3>竞赛管理提交管理列表。注意：此表是简表，<a href="{{ url_for('main.manager_comperirion_details') }}" target="_blank">点击前去查看详细表</a>
     </h3>
     <br/>
 
@@ -29,10 +29,10 @@
 
                 <tr>
                     <td>{{ competition.id }}</td>
-                    <td>{{ competition.patent_name }}</td>
-                    <td>{{ competition.patent_categorg }}</td>
-                    <td>{{ competition.patentee }}</td>
-                    <td>{{ competition.inventor }}</td>
+                    <td>{{ competition.project_name }}</td>
+                    <td>{{ competition.achievement_name }}</td>
+                    <td>{{ competition.stu_name }}</td>
+                    <td>{{ competition.prize_date }}</td>
                 </tr>
 
             {% endfor %}
