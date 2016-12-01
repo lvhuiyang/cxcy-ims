@@ -12,8 +12,8 @@
     </h3>
     <br/>
 
-    <div id="patent_details">
-        <table id="patent_details_table" class="display nowrap" cellspacing="0" width="100%" border="1">
+    <div id="thesis_details">
+        <table id="thesis_details_table" class="display nowrap" cellspacing="0" width="100%" border="1">
             <thead>
             <tr>
                 <th>序号</th>
@@ -45,7 +45,7 @@
     <script src="{{ url_for('static', filename='js/jquery.dataTables.min.js') }}"></script>
     <script>
         $(document).ready(function () {
-            $('#patent_details_table').DataTable({
+            $('#thesis_details_table').DataTable({
                 "paging": true,
                 "ordering": true,
                 "info": true
